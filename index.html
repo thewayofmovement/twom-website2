@@ -1353,21 +1353,23 @@ body {
       <h2 class="display-md">Eight questions.<br>Eight minutes.<br><em>One conversation.</em></h2>
       <p class="prose">This form is not administrative. Each question is chosen because the answer tells us something specific about where the imbalance sits and what the right starting point is. Answer honestly — the more specific you are, the more useful the conversation will be.</p>
 
-      <div class="form-block">
+      <form class="form-block" action="https://formspree.io/f/mzdywkdn" method="POST">
+        <input type="hidden" name="_subject" value="New TWOM Application">
+        <input type="hidden" name="_cc" value="info@thewayofmovement.com.au">
         <div class="form-row">
           <div>
             <label>First Name</label>
-            <input type="text" placeholder="Connor">
+            <input type="text" name="First Name" placeholder="Connor" required>
           </div>
           <div>
             <label>Last Name</label>
-            <input type="text" placeholder="Bowers">
+            <input type="text" name="Last Name" placeholder="Bowers" required>
           </div>
         </div>
         <label>Email</label>
-        <input type="email" placeholder="connor@email.com">
+        <input type="email" name="email" placeholder="connor@email.com" required>
         <label>What best describes you?</label>
-        <select>
+        <select name="Context" required>
           <option value="" disabled selected>Select your context</option>
           <option>Business owner / entrepreneur</option>
           <option>Executive / senior professional</option>
@@ -1376,7 +1378,7 @@ body {
           <option>Individual — other</option>
         </select>
         <label>Which program are you enquiring about?</label>
-        <select>
+        <select name="Program of Interest" required>
           <option value="" disabled selected>Select a program</option>
           <option>The Capable Human (individual)</option>
           <option>1:1 Coaching</option>
@@ -1386,20 +1388,20 @@ body {
           <option>Not sure yet — I want a diagnostic conversation</option>
         </select>
         <label>Which domain feels most under-invested right now — physical, mental, or identity/meaning?</label>
-        <textarea placeholder="Be specific if you can. This is the most useful answer on the form."></textarea>
+        <textarea name="Under-invested Domain" placeholder="Be specific if you can. This is the most useful answer on the form."></textarea>
         <label>What have you already tried that hasn't held?</label>
-        <textarea placeholder="Programs, approaches, coaches — what's been attempted and why it didn't stick."></textarea>
+        <textarea name="Previously Tried" placeholder="Programs, approaches, coaches — what's been attempted and why it didn't stick."></textarea>
         <label>What would be different in your life 12 months from now if this worked?</label>
-        <textarea placeholder="Not goals. The feeling. What would it actually mean?"></textarea>
+        <textarea name="12-Month Outcome" placeholder="Not goals. The feeling. What would it actually mean?"></textarea>
         <div style="margin-top:28px; border-top:1px solid var(--divider); padding-top:24px;">
           <p style="font-size:13px; color:var(--warm-grey); margin-bottom:20px;">If your application is a good fit, you'll hear from me within 48 hours with a time for a 20-minute conversation. If it's not a fit right now, I'll tell you that directly — and point you toward what might be.</p>
-          <button class="btn btn-primary" style="width:100%; text-align:center; padding:18px;">Submit Application</button>
+          <button type="submit" class="btn btn-primary" style="width:100%; text-align:center; padding:18px; border:none; cursor:pointer;">Submit Application</button>
         </div>
-      </div>
+      </form>
 
       <div style="margin-top:40px; padding:28px; border:1px solid var(--divider); background:var(--paper);">
         <span style="font-size:9px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:10px;">Direct Contact</span>
-        <p style="font-size:14px; color:var(--slate); margin:0;">For corporate enquiries, speaking bookings, or time-sensitive conversations: <strong style="color:var(--ink);">connor@thewayofmovement.com.au</strong> · <strong style="color:var(--ink);">thewayofmovement.com.au</strong></p>
+        <p style="font-size:14px; color:var(--slate); margin:0;">For corporate enquiries, speaking bookings, or time-sensitive conversations: <strong style="color:var(--ink);">info@thewayofmovement.com.au</strong> · <strong style="color:var(--ink);">thewayofmovement.com.au</strong></p>
       </div>
     </div>
   </div>
