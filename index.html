@@ -562,6 +562,112 @@ body {
 }
 .fade-in { animation: fadeUp 0.6s ease forwards; }
 
+/* ─── PATHWAY TABS (Apply page) ─── */
+.pathway-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--divider);
+  margin: 32px 0 48px;
+}
+.pathway-tab {
+  background: var(--surface);
+  border: none;
+  border-right: 1px solid var(--divider);
+  padding: 22px 18px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate);
+  text-align: center;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.pathway-tab:last-child { border-right: none; }
+.pathway-tab:hover { background: var(--paper); color: var(--ink); }
+.pathway-tab.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+.pathway-tab .pt-meta {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.pathway-tab.active .pt-meta { color: var(--gold-lt); }
+@media(max-width:680px) {
+  .pathway-tabs { grid-template-columns: 1fr 1fr; }
+  .pathway-tab { border-right: 1px solid var(--divider); border-bottom: 1px solid var(--divider); }
+  .pathway-tab:nth-child(2) { border-right: none; }
+  .pathway-tab:last-child { border-bottom: none; }
+  .pathway-tab:nth-last-child(2) { border-bottom: none; }
+}
+
+.pathway-panel { display: none; }
+.pathway-panel.active { display: block; }
+
+.pathway-intro {
+  background: var(--paper);
+  border-left: 3px solid var(--gold);
+  padding: 24px 28px;
+  margin-bottom: 32px;
+}
+.pathway-intro .pi-label {
+  font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 8px;
+}
+.pathway-intro .pi-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400;
+  color: var(--ink); line-height: 1.25;
+  margin-bottom: 8px;
+}
+.pathway-intro .pi-text { font-size: 14px; color: var(--slate); margin: 0; line-height: 1.65; }
+
+/* ─── ALTERNATIVE-PATH BLOCK ─── */
+.alt-path {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+@media(max-width:680px) { .alt-path { grid-template-columns: 1fr; } }
+.alt-path-card {
+  background: var(--paper);
+  border: 1px solid var(--divider);
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.alt-path-card:hover { border-color: var(--gold); }
+.alt-path-card .ap-label {
+  font-size: 9px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 8px;
+}
+.alt-path-card .ap-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 400;
+  color: var(--ink); margin-bottom: 6px;
+}
+.alt-path-card .ap-desc { font-size: 13px; color: var(--slate); margin: 0; line-height: 1.6; }
+
+/* ─── CALENDLY EMBED CONTAINER ─── */
+.calendly-container {
+  background: var(--paper);
+  border: 1px solid var(--divider);
+  padding: 24px;
+  margin: 32px 0;
+}
+.calendly-inline-widget { background: var(--surface); }
+
 /* ─── RESPONSIVE ─── */
 @media(max-width:600px) {
   .hero, .section, .section-wide, .section-narrow { padding-left: 24px; padding-right: 24px; }
@@ -586,7 +692,9 @@ body {
     <li><a onclick="showPage('capable')" id="nav-capable">The Capable Human</a></li>
     <li><a onclick="showPage('brotherhood')" id="nav-brotherhood">Brotherhood</a></li>
     <li><a onclick="showPage('about')" id="nav-about">About</a></li>
-    <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+    <li><a href="assessment.html" target="_blank" id="nav-assessment">Assessment</a></li>
+    <li><a onclick="showPage('book')" id="nav-book">Book a Call</a></li>
+    <li><a onclick="showPage('contact')" id="nav-contact">Apply</a></li>
   </ul>
 </nav>
 
@@ -717,12 +825,13 @@ body {
 
   <!-- FINAL CTA -->
   <div class="dark-band" style="padding-top:80px; padding-bottom:80px;">
-    <div style="max-width:600px; margin:0 auto; text-align:center;">
+    <div style="max-width:640px; margin:0 auto; text-align:center;">
       <h2 class="display" style="font-size:clamp(32px,4vw,52px); margin-bottom:20px;">Ready to close<br>the <em>gap?</em></h2>
-      <p class="prose" style="text-align:center; max-width:100%; margin-bottom:36px;">The first step is a diagnostic conversation — not a sales call. We identify where the imbalance is and whether this work is the right fit for it.</p>
+      <p class="prose" style="text-align:center; max-width:100%; margin-bottom:36px;">Three ways to begin — pick the one that matches where you are.</p>
       <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-        <button class="btn btn-gold" onclick="showPage('contact')">Start the Conversation</button>
-        <button class="btn btn-paper" onclick="showPage('work')" style="background:transparent; color:var(--paper); border:1px solid rgba(237,231,217,0.3);">Explore Programs</button>
+        <button class="btn btn-gold" onclick="showPage('contact')">Apply for a Program</button>
+        <button class="btn btn-paper" onclick="showPage('book')" style="background:transparent; color:var(--paper); border:1px solid rgba(237,231,217,0.3);">Book a Discovery Call</button>
+        <a class="btn btn-paper" href="assessment.html" target="_blank" style="background:transparent; color:var(--paper); border:1px solid rgba(237,231,217,0.3); text-decoration:none;">Take the Assessment</a>
       </div>
     </div>
   </div>
@@ -753,6 +862,10 @@ body {
     <span class="eyebrow">Work With Me</span>
     <h1 class="display">Every program begins<br>with a single <em>question.</em></h1>
     <p class="prose" style="font-size:19px; max-width:560px;">Which domain is under-invested — and what is that imbalance actually costing you? That question determines where we start. Everything below is a pathway to the same destination: a version of you that is coherent across all three.</p>
+    <div style="margin-top:32px; display:flex; gap:16px; flex-wrap:wrap;">
+      <button class="btn btn-primary" onclick="showPage('contact')">Apply for a Program</button>
+      <button class="btn btn-ghost" onclick="showPage('book')">Or Book a Discovery Call</button>
+    </div>
   </div>
 
   <hr class="rule">
@@ -1340,68 +1453,467 @@ body {
 <div class="page" id="page-contact">
   <div class="hero">
     <div class="hero-rule"></div>
-    <span class="eyebrow">Start Here</span>
+    <span class="eyebrow">Apply</span>
     <h1 class="display">The first conversation<br>is a <em>diagnostic.</em></h1>
-    <p class="prose" style="font-size:19px; max-width:580px;">Not a sales call. Not a pitch. A ten-minute conversation where we identify which domain is under-invested and whether this practice is the right fit for where you are. That conversation is free. What you're currently managing is not.</p>
+    <p class="prose" style="font-size:19px; max-width:580px;">Not a sales call. Not a pitch. A short conversation where we identify whether this work is the right fit for where you are. Different pathways need different starting questions — choose yours below.</p>
   </div>
 
   <hr class="rule">
 
   <div class="section">
-    <div style="max-width:680px;">
-      <span class="eyebrow">The Application</span>
-      <h2 class="display-md">Eight questions.<br>Eight minutes.<br><em>One conversation.</em></h2>
-      <p class="prose">This form is not administrative. Each question is chosen because the answer tells us something specific about where the imbalance sits and what the right starting point is. Answer honestly — the more specific you are, the more useful the conversation will be.</p>
+    <div style="max-width:760px;">
 
-      <form class="form-block" action="https://formspree.io/f/mzdywkdn" method="POST">
-        <input type="hidden" name="_subject" value="New TWOM Application">
-        <input type="hidden" name="_cc" value="info@thewayofmovement.com.au">
-        <div class="form-row">
-          <div>
-            <label>First Name</label>
-            <input type="text" name="First Name" placeholder="Connor" required>
-          </div>
-          <div>
-            <label>Last Name</label>
-            <input type="text" name="Last Name" placeholder="Bowers" required>
-          </div>
+      <span class="eyebrow">Choose Your Pathway</span>
+      <h2 class="display-md">Which version of this<br>fits where you <em>actually are?</em></h2>
+      <p class="prose">Each pathway asks the questions most relevant to it. The application is short — typically five questions — and tailored. Answer honestly. The more specific you are, the more useful the conversation will be.</p>
+
+      <!-- PATHWAY TABS -->
+      <div class="pathway-tabs">
+        <button class="pathway-tab active" onclick="switchPathway('individual', this)">
+          <span class="pt-meta">01</span>
+          Individual Coaching
+        </button>
+        <button class="pathway-tab" onclick="switchPathway('corporate', this)">
+          <span class="pt-meta">02</span>
+          Corporate
+        </button>
+        <button class="pathway-tab" onclick="switchPathway('athlete', this)">
+          <span class="pt-meta">03</span>
+          Athlete / S&amp;C
+        </button>
+        <button class="pathway-tab" onclick="switchPathway('brotherhood', this)">
+          <span class="pt-meta">04</span>
+          Brotherhood
+        </button>
+      </div>
+
+      <!-- ── PATHWAY 1: INDIVIDUAL COACHING ── -->
+      <div class="pathway-panel active" id="pathway-individual">
+
+        <div class="pathway-intro">
+          <div class="pi-label">For Individual Coaching · The Capable Human</div>
+          <div class="pi-title">High performers, business owners, and individuals who know one domain has fallen behind.</div>
+          <p class="pi-text">This pathway is for 1:1 coaching, the Capable Human program, and integrated individual development. The questions below are about your specific imbalance — not generic intake.</p>
         </div>
-        <label>Email</label>
-        <input type="email" name="email" placeholder="connor@email.com" required>
-        <label>What best describes you?</label>
-        <select name="Context" required>
-          <option value="" disabled selected>Select your context</option>
-          <option>Business owner / entrepreneur</option>
-          <option>Executive / senior professional</option>
-          <option>Athlete</option>
-          <option>HR / People & Culture / corporate buyer</option>
-          <option>Individual — other</option>
-        </select>
-        <label>Which program are you enquiring about?</label>
-        <select name="Program of Interest" required>
-          <option value="" disabled selected>Select a program</option>
-          <option>The Capable Human (individual)</option>
-          <option>1:1 Coaching</option>
-          <option>Brotherhood Cohort</option>
-          <option>S&C / Athletic Performance</option>
-          <option>Corporate Workshop or Keynote</option>
-          <option>Not sure yet — I want a diagnostic conversation</option>
-        </select>
-        <label>Which domain feels most under-invested right now — physical, mental, or identity/meaning?</label>
-        <textarea name="Under-invested Domain" placeholder="Be specific if you can. This is the most useful answer on the form."></textarea>
-        <label>What have you already tried that hasn't held?</label>
-        <textarea name="Previously Tried" placeholder="Programs, approaches, coaches — what's been attempted and why it didn't stick."></textarea>
-        <label>What would be different in your life 12 months from now if this worked?</label>
-        <textarea name="12-Month Outcome" placeholder="Not goals. The feeling. What would it actually mean?"></textarea>
-        <div style="margin-top:28px; border-top:1px solid var(--divider); padding-top:24px;">
-          <p style="font-size:13px; color:var(--warm-grey); margin-bottom:20px;">If your application is a good fit, you'll hear from me within 48 hours with a time for a 20-minute conversation. If it's not a fit right now, I'll tell you that directly — and point you toward what might be.</p>
-          <button type="submit" class="btn btn-primary" style="width:100%; text-align:center; padding:18px; border:none; cursor:pointer;">Submit Application</button>
+
+        <form class="form-block" action="https://formspree.io/f/mzdywkdn" method="POST">
+          <input type="hidden" name="_subject" value="New Application — Individual Coaching">
+          <input type="hidden" name="_cc" value="info@thewayofmovement.com.au">
+          <input type="hidden" name="Pathway" value="Individual Coaching">
+          <input type="hidden" name="_next" value="https://thewayofmovement.com.au/?thanks=1">
+
+          <div class="form-row">
+            <div>
+              <label>First Name</label>
+              <input type="text" name="First Name" placeholder="Connor" required>
+            </div>
+            <div>
+              <label>Last Name</label>
+              <input type="text" name="Last Name" placeholder="Bowers" required>
+            </div>
+          </div>
+          <label>Email</label>
+          <input type="email" name="email" placeholder="connor@email.com" required>
+          <label>Phone (optional)</label>
+          <input type="tel" name="Phone" placeholder="04XX XXX XXX">
+
+          <label>Which best describes your context?</label>
+          <select name="Context" required>
+            <option value="" disabled selected>Select your context</option>
+            <option>Business owner / entrepreneur</option>
+            <option>Executive / senior professional</option>
+            <option>Self-employed / consultant</option>
+            <option>Employed professional</option>
+            <option>Other</option>
+          </select>
+
+          <label>Which program are you most drawn to?</label>
+          <select name="Program of Interest" required>
+            <option value="" disabled selected>Select a program</option>
+            <option>1:1 Coaching</option>
+            <option>The Capable Human (individual program)</option>
+            <option>Not sure yet — need to discuss</option>
+          </select>
+
+          <label>Which domain feels most under-invested right now — physical, mental, or identity/meaning?</label>
+          <textarea name="Under-invested Domain" placeholder="Be specific if you can. This is the most useful answer on the form."></textarea>
+
+          <label>What have you already tried that hasn't held?</label>
+          <textarea name="Previously Tried" placeholder="Programs, approaches, coaches — what's been attempted and why it didn't stick."></textarea>
+
+          <label>What would be different in your life 12 months from now if this worked?</label>
+          <textarea name="12-Month Outcome" placeholder="Not goals. The feeling. What would actually be different?"></textarea>
+
+          <div style="margin-top:28px; border-top:1px solid var(--divider); padding-top:24px;">
+            <p style="font-size:13px; color:var(--warm-grey); margin-bottom:20px;">If your application is a good fit, you'll hear from me within 48 hours with a time for a 20-minute conversation. If it's not the right fit right now, I'll tell you that directly — and point you toward what might be.</p>
+            <button type="submit" class="btn btn-primary" style="width:100%; text-align:center; padding:18px; border:none; cursor:pointer;">Submit Application</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- ── PATHWAY 2: CORPORATE ── -->
+      <div class="pathway-panel" id="pathway-corporate">
+
+        <div class="pathway-intro">
+          <div class="pi-label">For Corporate Programs · Workshops · Keynotes</div>
+          <div class="pi-title">For organisations where the performance of the people matters as much as the performance of the business.</div>
+          <p class="pi-text">This isn't a sales conversation — it's a diagnostic. Tell us your team's friction point and we'll tell you which program addresses it, in what format, and what the conversation looks like.</p>
         </div>
-      </form>
+
+        <form class="form-block" action="https://formspree.io/f/mzdywkdn" method="POST">
+          <input type="hidden" name="_subject" value="New Corporate Enquiry">
+          <input type="hidden" name="_cc" value="info@thewayofmovement.com.au">
+          <input type="hidden" name="Pathway" value="Corporate">
+          <input type="hidden" name="_next" value="https://thewayofmovement.com.au/?thanks=1">
+
+          <div class="form-row">
+            <div>
+              <label>First Name</label>
+              <input type="text" name="First Name" placeholder="Connor" required>
+            </div>
+            <div>
+              <label>Last Name</label>
+              <input type="text" name="Last Name" placeholder="Bowers" required>
+            </div>
+          </div>
+          <label>Work Email</label>
+          <input type="email" name="email" placeholder="you@company.com.au" required>
+          <label>Phone (optional)</label>
+          <input type="tel" name="Phone" placeholder="04XX XXX XXX">
+
+          <div class="form-row">
+            <div>
+              <label>Company / Organisation</label>
+              <input type="text" name="Company" placeholder="Company name" required>
+            </div>
+            <div>
+              <label>Your Role</label>
+              <input type="text" name="Role" placeholder="HR Director, CEO, etc.">
+            </div>
+          </div>
+
+          <label>Approximate Team Size</label>
+          <select name="Team Size">
+            <option value="" disabled selected>Select team size</option>
+            <option>Under 20</option>
+            <option>20–50</option>
+            <option>50–150</option>
+            <option>150–500</option>
+            <option>500+</option>
+          </select>
+
+          <label>Which program are you enquiring about?</label>
+          <select name="Program of Interest" required>
+            <option value="" disabled selected>Select a program</option>
+            <option>Corporate Wellness Program</option>
+            <option>Corporate Self-Defence as Strategy</option>
+            <option>Keynote — Performance Under Pressure</option>
+            <option>Keynote — Self-Defence as Strategy</option>
+            <option>Keynote — The Human Machine</option>
+            <option>Leadership Team Workshop</option>
+            <option>Not sure yet — want to discuss options</option>
+          </select>
+
+          <label>What's the friction point you're trying to address?</label>
+          <textarea name="Friction Point" placeholder="Disengagement, retention, leadership development, team cohesion, stress and burnout, male engagement specifically — what's the actual problem?"></textarea>
+
+          <label>What have you tried that hasn't worked?</label>
+          <textarea name="Previously Tried" placeholder="EAP, generic wellness, off-the-shelf workshops — anything that hasn't moved the needle and why you think it didn't."></textarea>
+
+          <label>Timeline & format you're considering</label>
+          <textarea name="Timeline & Format" placeholder="Half-day pilot, ongoing program, single keynote, recurring engagement, etc. Approximate timeframe if you have one."></textarea>
+
+          <div style="margin-top:28px; border-top:1px solid var(--divider); padding-top:24px;">
+            <p style="font-size:13px; color:var(--warm-grey); margin-bottom:20px;">Corporate enquiries are responded to within 2 business days. The first conversation is a 30-minute scoping call — no pitch, just a diagnostic of whether and how this work fits your context.</p>
+            <button type="submit" class="btn btn-primary" style="width:100%; text-align:center; padding:18px; border:none; cursor:pointer;">Submit Corporate Enquiry</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- ── PATHWAY 3: ATHLETE / S&C ── -->
+      <div class="pathway-panel" id="pathway-athlete">
+
+        <div class="pathway-intro">
+          <div class="pi-label">For Athletes · Fighters · Performance Floor</div>
+          <div class="pi-title">Athletes who know the body is developed but something else is the ceiling.</div>
+          <p class="pi-text">This pathway is for 1:1 athletic performance coaching, S&amp;C programming, and Performance Floor enquiries. If you're booking a free trial of the Performance Floor class, use the booking widget on that page instead — this form is for everything else.</p>
+        </div>
+
+        <form class="form-block" action="https://formspree.io/f/mzdywkdn" method="POST">
+          <input type="hidden" name="_subject" value="New Athletic Performance Enquiry">
+          <input type="hidden" name="_cc" value="info@thewayofmovement.com.au">
+          <input type="hidden" name="Pathway" value="Athlete / S&C">
+          <input type="hidden" name="_next" value="https://thewayofmovement.com.au/?thanks=1">
+
+          <div class="form-row">
+            <div>
+              <label>First Name</label>
+              <input type="text" name="First Name" placeholder="Connor" required>
+            </div>
+            <div>
+              <label>Last Name</label>
+              <input type="text" name="Last Name" placeholder="Bowers" required>
+            </div>
+          </div>
+          <label>Email</label>
+          <input type="email" name="email" placeholder="connor@email.com" required>
+          <label>Phone (optional)</label>
+          <input type="tel" name="Phone" placeholder="04XX XXX XXX">
+
+          <label>Your sport / discipline</label>
+          <input type="text" name="Sport" placeholder="BJJ, MMA, AFL, running, climbing, weightlifting, etc." required>
+
+          <label>Competitive level</label>
+          <select name="Level">
+            <option value="" disabled selected>Select your level</option>
+            <option>Recreational / casual</option>
+            <option>Amateur — competing locally</option>
+            <option>Amateur — competing nationally</option>
+            <option>Semi-professional</option>
+            <option>Professional</option>
+          </select>
+
+          <label>What are you enquiring about?</label>
+          <select name="Program of Interest" required>
+            <option value="" disabled selected>Select an option</option>
+            <option>1:1 S&C Coaching</option>
+            <option>Performance Floor — group class enquiry</option>
+            <option>Custom programming for my sport</option>
+            <option>Team / club S&C program</option>
+            <option>Not sure yet — want to discuss</option>
+          </select>
+
+          <label>Where do you feel the ceiling is?</label>
+          <textarea name="Ceiling" placeholder="Plateau in strength? Underperformance in competition vs training? Recurring injury? Recovery? Specific performance metric?"></textarea>
+
+          <label>Current training — what does the week look like?</label>
+          <textarea name="Current Training" placeholder="How many sessions per week, what does the split look like, what's working and what isn't."></textarea>
+
+          <label>What's the goal — what does success look like over the next season / 12 months?</label>
+          <textarea name="Goal" placeholder="Competition outcome, performance metric, injury reduction, longevity in sport — be specific."></textarea>
+
+          <div style="margin-top:28px; border-top:1px solid var(--divider); padding-top:24px;">
+            <p style="font-size:13px; color:var(--warm-grey); margin-bottom:20px;">Athletic performance enquiries get a response within 48 hours. The first conversation is an assessment of where the actual ceiling is — physical, technical, or psychological — and what the right intervention looks like.</p>
+            <button type="submit" class="btn btn-primary" style="width:100%; text-align:center; padding:18px; border:none; cursor:pointer;">Submit Enquiry</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- ── PATHWAY 4: BROTHERHOOD ── -->
+      <div class="pathway-panel" id="pathway-brotherhood">
+
+        <div class="pathway-intro">
+          <div class="pi-label">For the Brotherhood Cohort</div>
+          <div class="pi-title">Men who have outgrown every container they've been in — and are looking for one serious enough to hold the work.</div>
+          <p class="pi-text">The Brotherhood is application-only. Cohort size is capped at 8–12. The questions below aren't administrative — they're the first part of the conversation. Answer them properly or don't answer them at all.</p>
+        </div>
+
+        <form class="form-block" action="https://formspree.io/f/mzdywkdn" method="POST">
+          <input type="hidden" name="_subject" value="New Brotherhood Application">
+          <input type="hidden" name="_cc" value="info@thewayofmovement.com.au">
+          <input type="hidden" name="Pathway" value="Brotherhood">
+          <input type="hidden" name="_next" value="https://thewayofmovement.com.au/?thanks=1">
+
+          <div class="form-row">
+            <div>
+              <label>First Name</label>
+              <input type="text" name="First Name" placeholder="Connor" required>
+            </div>
+            <div>
+              <label>Last Name</label>
+              <input type="text" name="Last Name" placeholder="Bowers" required>
+            </div>
+          </div>
+          <label>Email</label>
+          <input type="email" name="email" placeholder="connor@email.com" required>
+          <label>Phone</label>
+          <input type="tel" name="Phone" placeholder="04XX XXX XXX" required>
+
+          <label>Age</label>
+          <input type="number" name="Age" placeholder="35" min="18" max="80">
+
+          <label>How did you find the Brotherhood?</label>
+          <select name="Source">
+            <option value="" disabled selected>Select source</option>
+            <option>Referred by a current or past member</option>
+            <option>Referred by Connor directly</option>
+            <option>Found through the website / social media</option>
+            <option>Through corporate or coaching work</option>
+            <option>Other</option>
+          </select>
+
+          <label>If referred — by whom?</label>
+          <input type="text" name="Referrer" placeholder="Name of person who referred you (if applicable)">
+
+          <label>What is your professional or work context?</label>
+          <textarea name="Context" placeholder="What you do, what's at stake in your work, what level you're operating at."></textarea>
+
+          <label>Why now? What's brought you to this specifically?</label>
+          <textarea name="Why Now" placeholder="Not 'I want to improve myself' — what specifically has shifted that has you looking for this kind of container right now?"></textarea>
+
+          <label>What's the work that you've been putting off?</label>
+          <textarea name="Work Putting Off" placeholder="The thing you know is there. The conversation you're not having. The domain of your life that's been quietly atrophying. Be honest."></textarea>
+
+          <label>What do you want from a group of men?</label>
+          <textarea name="Group Expectation" placeholder="Not therapy. Not networking. What does a real group of men do that you don't currently have access to?"></textarea>
+
+          <div style="margin-top:28px; border-top:1px solid var(--divider); padding-top:24px;">
+            <p style="font-size:13px; color:var(--warm-grey); margin-bottom:20px;">Brotherhood applications are read individually. If your application is a fit for the next cohort, you'll receive a request to schedule a 30-minute conversation. If the timing isn't right, I'll tell you when the next intake is and what to think about between now and then.</p>
+            <button type="submit" class="btn btn-primary" style="width:100%; text-align:center; padding:18px; border:none; cursor:pointer;">Submit Brotherhood Application</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- ALTERNATIVE PATHS -->
+      <hr class="rule" style="margin:48px 0 32px;">
+
+      <span class="eyebrow">Or, If You're Not Ready to Apply</span>
+      <h3 style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:400; color:var(--ink); margin-bottom:16px;">Two other ways in.</h3>
+
+      <div class="alt-path">
+        <div class="alt-path-card" onclick="showPage('book')">
+          <div class="ap-label">Free · 20 min</div>
+          <div class="ap-title">Book a Discovery Call</div>
+          <p class="ap-desc">If you'd rather have a quick conversation first to figure out whether to apply at all — book a free 20-minute call directly. No application required.</p>
+        </div>
+        <a class="alt-path-card" href="assessment.html" target="_blank" style="text-decoration:none; display:block;">
+          <div class="ap-label">Free · Self-paced</div>
+          <div class="ap-title">Take the Three Strengths Assessment</div>
+          <p class="ap-desc">If you're not sure which domain is actually under-invested, the assessment maps it. Free, self-paced, opens in a new tab. Result: a profile that tells you which program fits.</p>
+        </a>
+      </div>
 
       <div style="margin-top:40px; padding:28px; border:1px solid var(--divider); background:var(--paper);">
         <span style="font-size:9px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:10px;">Direct Contact</span>
-        <p style="font-size:14px; color:var(--slate); margin:0;">For corporate enquiries, speaking bookings, or time-sensitive conversations: <strong style="color:var(--ink);">info@thewayofmovement.com.au</strong> · <strong style="color:var(--ink);">thewayofmovement.com.au</strong></p>
+        <p style="font-size:14px; color:var(--slate); margin:0;">For time-sensitive enquiries, speaking bookings, or questions outside of these pathways: <strong style="color:var(--ink);">info@thewayofmovement.com.au</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">The Way of Movement</div>
+      <div class="footer-line">Melbourne · Performance Development Practice</div>
+      <div class="footer-bottom">
+        <div style="font-size:11px;">© 2025 The Way of Movement · Connor Bowers</div>
+        <div class="footer-links">
+          <a onclick="showPage('home')">Home</a>
+          <a onclick="showPage('work')">Programs</a>
+          <a onclick="showPage('about')">About</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: BOOK A CALL
+════════════════════════════════════════════════ -->
+<div class="page" id="page-book">
+  <div class="hero">
+    <div class="hero-rule"></div>
+    <span class="eyebrow">Book a Discovery Call</span>
+    <h1 class="display">Twenty minutes.<br><em>One conversation.</em></h1>
+    <p class="prose" style="font-size:19px; max-width:580px;">A free, no-obligation conversation to identify whether and how this work fits where you are. Useful if you're between programs and want to figure out the right starting point — or if you've already applied and want a faster path to a conversation.</p>
+  </div>
+
+  <hr class="rule">
+
+  <div class="section">
+    <div style="max-width:760px;">
+
+      <span class="eyebrow">Who This Is For</span>
+      <h2 class="display-md">Best used if you're<br>between <em>two pathways.</em></h2>
+      <p class="prose">If you know the program you want, the application form is faster. If you're between options — or you've already done the assessment and want to talk through what your profile means — the discovery call is the right place to start.</p>
+      <p class="prose">Calls are 20 minutes. Free. No follow-up sales sequence. Either there's a clear next step at the end of the call, or there isn't — and we'll be honest with you either way.</p>
+
+      <!-- CALENDLY EMBED -->
+      <div class="calendly-container">
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/admin-thewayofmovement/30min" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+      </div>
+
+      <hr class="rule" style="margin:48px 0 32px;">
+
+      <span class="eyebrow">Other Ways to Begin</span>
+      <h3 style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:400; color:var(--ink); margin-bottom:16px;">If you'd rather skip the call.</h3>
+
+      <div class="alt-path">
+        <div class="alt-path-card" onclick="showPage('contact')">
+          <div class="ap-label">Application</div>
+          <div class="ap-title">Apply Directly</div>
+          <p class="ap-desc">Skip the call and apply for a specific program directly. The application is the cleanest path if you already know which pathway fits.</p>
+        </div>
+        <a class="alt-path-card" href="assessment.html" target="_blank" style="text-decoration:none; display:block;">
+          <div class="ap-label">Self-paced</div>
+          <div class="ap-title">Take the Assessment</div>
+          <p class="ap-desc">If you're not even sure which pathway to pick — the Three Strengths assessment maps it. Free, opens in a new tab.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">The Way of Movement</div>
+      <div class="footer-line">Melbourne · Performance Development Practice</div>
+      <div class="footer-bottom">
+        <div style="font-size:11px;">© 2025 The Way of Movement · Connor Bowers</div>
+        <div class="footer-links">
+          <a onclick="showPage('home')">Home</a>
+          <a onclick="showPage('work')">Programs</a>
+          <a onclick="showPage('contact')">Apply</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: THANKS (post form-submission)
+════════════════════════════════════════════════ -->
+<div class="page" id="page-thanks">
+  <div class="hero">
+    <div class="hero-rule"></div>
+    <span class="eyebrow">Application Received</span>
+    <h1 class="display">Thank you.<br><em>I'll read it properly.</em></h1>
+    <p class="prose" style="font-size:19px; max-width:580px;">Your application has come through. I read every one personally — usually within 24 hours. If there's a fit, you'll hear from me with a time for a conversation. If the timing isn't right, I'll tell you that directly and point you toward what might be.</p>
+  </div>
+
+  <hr class="rule">
+
+  <div class="section">
+    <div style="max-width:760px;">
+
+      <span class="eyebrow">While You Wait</span>
+      <h2 class="display-md">Two things worth doing<br>before we <em>speak.</em></h2>
+
+      <p class="prose">The conversation we have is far more useful when both of these are done first. Take 30 minutes — you'll get more out of the call.</p>
+
+      <div class="alt-path" style="margin-top:32px;">
+        <a class="alt-path-card" href="assessment.html" target="_blank" style="text-decoration:none; display:block;">
+          <div class="ap-label">Free · 20 minutes · Highly recommended</div>
+          <div class="ap-title">Take the Three Strengths Assessment</div>
+          <p class="ap-desc">A self-paced diagnostic that identifies which of the three domains is actually under-invested. The result is a profile of your specific imbalance — bring it to our conversation and we'll have somewhere real to start.</p>
+        </a>
+        <div class="alt-path-card" onclick="showPage('book')">
+          <div class="ap-label">Optional · 20 minutes</div>
+          <div class="ap-title">Book a Faster Discovery Call</div>
+          <p class="ap-desc">If you'd rather not wait for me to come back to you, you can book directly into the calendar. Useful if your timeline is tight.</p>
+        </div>
+      </div>
+
+      <hr class="rule" style="margin:48px 0 32px;">
+
+      <p class="prose" style="font-size:14px;">Something to think about between now and our conversation:</p>
+      <div class="pull-quote" style="margin-top:16px;">
+        <p>"You know what to do. The information has always been available. The problem isn't knowledge — it's that knowing and doing are different disciplines. The work begins with naming, honestly, what's been getting in the way."</p>
+      </div>
+
+      <div style="margin-top:48px;">
+        <button class="btn btn-ghost" onclick="showPage('home')">← Back to Home</button>
       </div>
     </div>
   </div>
@@ -1431,7 +1943,9 @@ const pages = {
   capable: 'The Capable Human',
   brotherhood: 'Brotherhood',
   about: 'About',
-  contact: 'Contact'
+  contact: 'Apply',
+  book: 'Book a Call',
+  thanks: 'Application Received'
 };
 
 function showPage(id) {
@@ -1452,6 +1966,30 @@ function showPage(id) {
   // Update flag
   document.getElementById('page-flag').textContent = pages[id] || id;
 }
+
+// ─── PATHWAY TAB SWITCHING (Apply page) ───
+function switchPathway(pathway, btnEl) {
+  // Hide all pathway panels
+  document.querySelectorAll('.pathway-panel').forEach(p => p.classList.remove('active'));
+  // Deactivate all pathway tabs
+  document.querySelectorAll('.pathway-tab').forEach(t => t.classList.remove('active'));
+  // Show target panel
+  const target = document.getElementById('pathway-' + pathway);
+  if (target) target.classList.add('active');
+  // Activate the clicked tab
+  if (btnEl) btnEl.classList.add('active');
+}
+
+// ─── DETECT POST-SUBMISSION REDIRECT ───
+// If URL has ?thanks=1 (Formspree redirect target), show the thanks page automatically
+(function checkThanksParam() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('thanks') === '1') {
+    showPage('thanks');
+    // Clean the URL so refresh doesn't keep showing thanks page
+    history.replaceState({}, '', window.location.pathname);
+  }
+})();
 </script>
 </body>
 </html>

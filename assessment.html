@@ -1,0 +1,2259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Three Strengths — Assessment & Development Framework</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ───────────────────────────────────────────── */
+:root {
+  --cream:    #f7f3ec;
+  --warm:     #ede6d5;
+  --warmer:   #e4dac6;
+  --forest:   #1e3d2f;
+  --forest2:  #2a5240;
+  --forest3:  #3b6b54;
+  --gold:     #b8860b;
+  --gold-lt:  #d4a017;
+  --gold-dim: rgba(184,134,11,0.10);
+  --ink:      #1a1a14;
+  --mid:      #4a4a3a;
+  --slate:    #7a7a68;
+  --rule:     rgba(30,61,47,0.12);
+  --body-dom: #2d4a1e;  /* physical */
+  --mind-dom: #1e2d4a;  /* mental */
+  --inner-dom:#4a1e3d;  /* inner life */
+  --body-lt:  #e8f0e2;
+  --mind-lt:  #e2e8f0;
+  --inner-lt: #f0e2ee;
+  --body-mid: #4a7c35;
+  --mind-mid: #355a8c;
+  --inner-mid:#7c3566;
+  --white:    #ffffff;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);font-family:'Lato',sans-serif;font-size:15px;line-height:1.65;overflow-x:hidden;}
+
+/* ── PROGRESS ─────────────────────────────────────────── */
+#reading-progress{position:fixed;top:0;left:0;height:3px;background:var(--forest);z-index:200;width:0;transition:width 0.1s linear;pointer-events:none;}
+
+/* ── COVER ────────────────────────────────────────────── */
+.cover{min-height:100vh;background:var(--forest);color:var(--cream);display:grid;grid-template-rows:1fr auto;position:relative;overflow:hidden;}
+.cover-bg{position:absolute;inset:0;background:
+  radial-gradient(ellipse 80% 60% at 110% 50%, rgba(184,134,11,0.07) 0%, transparent 60%),
+  radial-gradient(ellipse 50% 80% at -10% 80%, rgba(59,107,84,0.4) 0%, transparent 55%),
+  repeating-linear-gradient(-35deg,transparent,transparent 80px,rgba(184,134,11,0.018) 80px,rgba(184,134,11,0.018) 81px);
+pointer-events:none;}
+.cover-inner{position:relative;z-index:1;padding:72px 80px 60px;display:flex;flex-direction:column;justify-content:flex-end;min-height:85vh;}
+.cover-kicker{font-size:9px;letter-spacing:0.36em;text-transform:uppercase;font-weight:700;color:var(--gold-lt);margin-bottom:20px;}
+.cover-title{font-family:'Playfair Display',serif;font-size:clamp(56px,8vw,112px);line-height:0.88;font-weight:900;margin-bottom:28px;max-width:700px;}
+.cover-title em{color:var(--gold-lt);font-style:normal;display:block;}
+.cover-sub{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:rgba(247,243,236,0.55);max-width:520px;line-height:1.65;margin-bottom:48px;}
+.cover-domains{display:flex;gap:0;margin-bottom:52px;}
+.cover-domain{padding:14px 22px;border:1px solid rgba(247,243,236,0.12);display:flex;align-items:center;gap:10px;}
+.cover-domain:first-child{border-right:none;}
+.cover-domain:last-child{border-left:none;}
+.domain-pip{width:8px;height:8px;border-radius:50%;}
+.domain-pip.body{background:var(--body-mid);}
+.domain-pip.mind{background:var(--mind-mid);}
+.domain-pip.inner{background:var(--inner-mid);}
+.cover-domain-name{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;color:rgba(247,243,236,0.5);}
+.cover-cta{display:inline-flex;align-items:center;gap:12px;background:var(--gold);color:var(--ink);padding:16px 32px;font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:none;transition:background 0.18s;text-decoration:none;}
+.cover-cta:hover{background:var(--gold-lt);}
+.cover-cta .arrow{font-size:18px;}
+.cover-footer{position:relative;z-index:1;padding:28px 80px;border-top:1px solid rgba(247,243,236,0.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:gap;}
+.cover-footer-note{font-size:11px;color:rgba(247,243,236,0.3);letter-spacing:0.06em;}
+
+/* ── INTRO ────────────────────────────────────────────── */
+.intro-section{max-width:780px;margin:0 auto;padding:96px 40px 80px;}
+.intro-kicker{font-size:9px;letter-spacing:0.3em;text-transform:uppercase;font-weight:700;color:var(--forest3);margin-bottom:14px;}
+.intro-title{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:24px;}
+.intro-body{font-family:'Playfair Display',serif;font-size:19px;line-height:1.8;color:var(--mid);margin-bottom:20px;}
+.intro-body strong{color:var(--ink);font-weight:600;}
+.intro-note{font-family:'Lato',sans-serif;font-size:13.5px;color:var(--slate);line-height:1.65;border-left:3px solid var(--rule);padding-left:18px;margin:28px 0;font-style:italic;}
+.intro-rule{border:none;border-top:2px solid var(--forest);width:48px;margin:36px 0;}
+
+/* ── HOW-IT-WORKS ─────────────────────────────────────── */
+.how-it-works{background:var(--forest);color:var(--cream);padding:80px 40px;}
+.how-inner{max-width:900px;margin:0 auto;}
+.how-kicker{font-size:9px;letter-spacing:0.3em;text-transform:uppercase;font-weight:700;color:var(--gold-lt);margin-bottom:14px;}
+.how-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--cream);margin-bottom:40px;}
+.how-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border-top:1px solid rgba(247,243,236,0.1);}
+.how-step{padding:32px 28px;border-right:1px solid rgba(247,243,236,0.08);}
+.how-step:last-child{border-right:none;}
+.how-step-num{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--gold);opacity:0.4;line-height:1;margin-bottom:12px;}
+.how-step-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--cream);margin-bottom:8px;}
+.how-step-body{font-size:12.5px;color:rgba(247,243,236,0.5);line-height:1.6;}
+
+/* ── DOMAIN MAPS ──────────────────────────────────────── */
+.domain-map-section{padding:80px 40px;}
+.domain-map-inner{max-width:1000px;margin:0 auto;}
+.section-kicker{font-size:9px;letter-spacing:0.3em;text-transform:uppercase;font-weight:700;margin-bottom:10px;}
+.section-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--ink);margin-bottom:10px;}
+.section-sub{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--slate);margin-bottom:48px;max-width:600px;line-height:1.6;}
+.domain-card{display:grid;grid-template-columns:280px 1fr;gap:0;margin-bottom:40px;border:1px solid var(--rule);background:var(--white);overflow:hidden;}
+@media(max-width:780px){.domain-card{grid-template-columns:1fr;}}
+.domain-card-sidebar{padding:36px 32px;position:relative;display:flex;flex-direction:column;}
+.domain-card-sidebar.body-s{background:var(--body-dom);}
+.domain-card-sidebar.mind-s{background:var(--mind-dom);}
+.domain-card-sidebar.inner-s{background:var(--inner-dom);}
+.domain-icon{font-size:40px;margin-bottom:16px;line-height:1;}
+.domain-tag{font-size:8.5px;letter-spacing:0.24em;text-transform:uppercase;font-weight:700;color:rgba(247,243,236,0.4);margin-bottom:6px;}
+.domain-name{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;color:var(--cream);line-height:1;margin-bottom:4px;}
+.domain-alt{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:rgba(247,243,236,0.5);margin-bottom:20px;}
+.domain-premise{font-size:12.5px;color:rgba(247,243,236,0.7);line-height:1.6;flex:1;}
+.domain-card-body{padding:32px 36px;}
+.domain-states{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;}
+@media(max-width:540px){.domain-states{grid-template-columns:1fr;}}
+.domain-state{}
+.state-label{font-size:8.5px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:8px;}
+.state-label.healthy{color:var(--forest3);}
+.state-label.over{color:var(--gold);}
+.state-label.atrophy{color:#8b3030;}
+.state-body{font-size:13px;color:var(--mid);line-height:1.6;}
+.domain-cost{background:var(--warm);padding:16px 20px;border-left:3px solid var(--gold);}
+.domain-cost-label{font-size:8.5px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:6px;}
+.domain-cost-body{font-size:13px;color:var(--mid);line-height:1.6;}
+
+/* ── ASSESSMENT ───────────────────────────────────────── */
+.assessment-section{background:var(--ink);color:var(--cream);padding:80px 40px;}
+.assess-inner{max-width:820px;margin:0 auto;}
+.assess-kicker{font-size:9px;letter-spacing:0.3em;text-transform:uppercase;font-weight:700;color:var(--gold-lt);margin-bottom:10px;}
+.assess-title{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--cream);margin-bottom:12px;}
+.assess-sub{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:rgba(247,243,236,0.45);margin-bottom:16px;line-height:1.6;max-width:580px;}
+.assess-note{font-size:12.5px;color:rgba(247,243,236,0.3);line-height:1.55;margin-bottom:48px;max-width:580px;}
+.assess-progress-track{background:rgba(247,243,236,0.08);height:3px;margin-bottom:48px;position:relative;}
+.assess-progress-fill{height:3px;background:var(--gold);width:0%;transition:width 0.4s ease;}
+.assess-progress-label{font-size:10px;color:rgba(247,243,236,0.3);letter-spacing:0.1em;margin-top:8px;}
+
+/* Domain block */
+.domain-block{margin-bottom:60px;padding-bottom:60px;border-bottom:1px solid rgba(247,243,236,0.06);}
+.domain-block:last-of-type{border-bottom:none;}
+.domain-block-header{display:flex;align-items:center;gap:16px;margin-bottom:32px;}
+.domain-block-pip{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.domain-block-pip.body{background:var(--body-mid);}
+.domain-block-pip.mind{background:var(--mind-mid);}
+.domain-block-pip.inner{background:var(--inner-mid);}
+.domain-block-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--cream);}
+.domain-block-note{font-size:12px;color:rgba(247,243,236,0.35);margin-left:auto;font-style:italic;}
+
+/* Question */
+.q-item{margin-bottom:32px;}
+.q-text{font-family:'Playfair Display',serif;font-size:17px;line-height:1.6;color:rgba(247,243,236,0.88);margin-bottom:14px;}
+.q-text em{color:rgba(247,243,236,0.5);font-style:normal;font-size:13px;}
+.q-scale{display:flex;gap:0;align-items:stretch;}
+.q-option{flex:1;position:relative;}
+.q-option input[type=radio]{position:absolute;opacity:0;width:0;height:0;}
+.q-option label{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:12px 4px 10px;cursor:pointer;border:1px solid rgba(247,243,236,0.08);border-right:none;transition:all 0.15s;min-height:64px;gap:6px;}
+.q-option:last-child label{border-right:1px solid rgba(247,243,236,0.08);}
+.q-option label:hover{background:rgba(247,243,236,0.04);}
+.q-option input:checked + label{border-color:var(--gold) !important;background:rgba(184,134,11,0.12);}
+.q-option-num{font-family:'Bebas Neue',sans-serif;font-size:22px;color:rgba(247,243,236,0.3);line-height:1;transition:color 0.15s;}
+.q-option input:checked + label .q-option-num{color:var(--gold-lt);}
+.q-option-label{font-size:9px;text-align:center;color:rgba(247,243,236,0.2);line-height:1.3;padding:0 2px;}
+.q-option input:checked + label .q-option-label{color:rgba(247,243,236,0.5);}
+.q-scale-ends{display:flex;justify-content:space-between;margin-top:6px;}
+.q-scale-end{font-size:10px;color:rgba(247,243,236,0.2);font-style:italic;}
+
+/* Submit */
+.assess-submit-area{text-align:center;padding-top:40px;}
+.assess-submit-note{font-size:12px;color:rgba(247,243,236,0.25);margin-bottom:20px;font-style:italic;}
+.btn-submit{background:var(--gold);color:var(--ink);border:none;padding:18px 48px;font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;transition:background 0.18s;}
+.btn-submit:hover{background:var(--gold-lt);}
+.btn-submit:disabled{background:rgba(247,243,236,0.1);color:rgba(247,243,236,0.3);cursor:not-allowed;}
+.assess-incomplete-msg{color:#e08080;font-size:12px;margin-top:12px;display:none;}
+
+/* ── RESULTS ──────────────────────────────────────────── */
+#results-section{display:none;}
+.results-header{background:var(--forest);color:var(--cream);padding:80px 40px 60px;}
+.results-header-inner{max-width:820px;margin:0 auto;}
+.results-kicker{font-size:9px;letter-spacing:0.3em;text-transform:uppercase;font-weight:700;color:var(--gold-lt);margin-bottom:10px;}
+.results-name{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--cream);margin-bottom:6px;line-height:1;}
+.results-subtitle{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:rgba(247,243,236,0.5);margin-bottom:40px;}
+
+/* Score bars */
+.score-bars{display:grid;gap:20px;margin-bottom:40px;}
+.score-bar-row{display:grid;grid-template-columns:120px 1fr 48px;gap:16px;align-items:center;}
+.score-bar-label{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+.score-bar-label.body{color:var(--body-mid);}
+.score-bar-label.mind{color:var(--mind-mid);}
+.score-bar-label.inner{color:var(--inner-mid);}
+/* Fix: use color filter to make label lighter on dark bg */
+.results-header .score-bar-label.body{color:#6ab44a;}
+.results-header .score-bar-label.mind{color:#6a9ad4;}
+.results-header .score-bar-label.inner{color:#c46aaa;}
+.score-bar-track{height:8px;background:rgba(247,243,236,0.08);position:relative;}
+.score-bar-fill{height:8px;position:absolute;left:0;top:0;transition:width 1s ease;}
+.score-bar-fill.body{background:var(--body-mid);}
+.score-bar-fill.mind{background:var(--mind-mid);}
+.score-bar-fill.inner{background:var(--inner-mid);}
+.score-bar-val{font-family:'Bebas Neue',sans-serif;font-size:22px;line-height:1;text-align:right;}
+
+/* Profile card */
+.profile-card{background:rgba(247,243,236,0.04);border:1px solid rgba(247,243,236,0.1);padding:32px 36px;margin-bottom:32px;}
+.profile-card-kicker{font-size:8.5px;letter-spacing:0.24em;text-transform:uppercase;font-weight:700;color:var(--gold-lt);margin-bottom:6px;}
+.profile-card-name{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--cream);margin-bottom:12px;line-height:1.1;}
+.profile-card-body{font-family:'Playfair Display',serif;font-size:16px;line-height:1.75;color:rgba(247,243,236,0.75);}
+.profile-card-body strong{color:var(--cream);font-weight:600;}
+
+/* Imbalance alert */
+.imbalance-alert{background:rgba(184,134,11,0.12);border-left:3px solid var(--gold);padding:20px 24px;margin-bottom:24px;}
+.imbalance-label{font-size:8.5px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;color:var(--gold-lt);margin-bottom:8px;}
+.imbalance-body{font-size:14px;color:rgba(247,243,236,0.8);line-height:1.6;}
+
+/* Results body sections */
+.results-body{max-width:820px;margin:0 auto;padding:64px 40px 100px;}
+.results-section{margin-bottom:64px;}
+.results-section-kicker{font-size:9px;letter-spacing:0.28em;text-transform:uppercase;font-weight:700;color:var(--forest3);margin-bottom:10px;}
+.results-section-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--ink);margin-bottom:16px;}
+.results-section-body{font-family:'Playfair Display',serif;font-size:17px;line-height:1.78;color:var(--mid);margin-bottom:16px;}
+.results-section-body strong{color:var(--ink);}
+.results-rule{border:none;border-top:1px solid var(--rule);margin-bottom:48px;}
+
+/* Domain result blocks */
+.domain-result{display:grid;grid-template-columns:8px 1fr;gap:0;margin-bottom:28px;}
+.domain-result-accent{width:8px;}
+.domain-result-accent.body{background:var(--body-mid);}
+.domain-result-accent.mind{background:var(--mind-mid);}
+.domain-result-accent.inner{background:var(--inner-mid);}
+.domain-result-content{padding:24px 28px;background:var(--white);border:1px solid var(--rule);border-left:none;}
+.domain-result-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.domain-result-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--ink);}
+.domain-result-badge{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;}
+.badge-strength{background:var(--body-lt);color:var(--body-dom);}
+.badge-overdeveloped{background:#fff3cd;color:#856404;}
+.badge-developing{background:#e8f0e2;color:var(--body-dom);}
+.badge-deficit{background:#f8e8e8;color:#8b1a1a;}
+.domain-result-body{font-size:13.5px;line-height:1.65;color:var(--mid);}
+.domain-result-body p{margin-bottom:10px;}
+.domain-result-body p:last-child{margin-bottom:0;}
+.domain-highlight{font-weight:700;color:var(--ink);}
+
+/* Development pathway */
+.pathway-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:24px;}
+.pathway-card{background:var(--white);border:1px solid var(--rule);padding:22px 24px;}
+.pathway-card-domain{width:28px;height:4px;margin-bottom:14px;}
+.pathway-card-domain.body{background:var(--body-mid);}
+.pathway-card-domain.mind{background:var(--mind-mid);}
+.pathway-card-domain.inner{background:var(--inner-mid);}
+.pathway-card-priority{font-size:8.5px;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:var(--slate);margin-bottom:6px;}
+.pathway-card-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.pathway-card-body{font-size:12.5px;color:var(--mid);line-height:1.6;}
+
+/* Product routing */
+.routing-section{background:var(--forest);color:var(--cream);padding:64px 40px;}
+.routing-inner{max-width:820px;margin:0 auto;}
+.routing-kicker{font-size:9px;letter-spacing:0.3em;text-transform:uppercase;font-weight:700;color:var(--gold-lt);margin-bottom:10px;}
+.routing-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--cream);margin-bottom:12px;}
+.routing-sub{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:rgba(247,243,236,0.45);margin-bottom:36px;line-height:1.6;}
+.routing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:rgba(247,243,236,0.08);}
+.routing-card{background:var(--forest);padding:28px 24px;position:relative;}
+.routing-card-tag{font-size:8.5px;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:var(--gold-lt);margin-bottom:8px;}
+.routing-card-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--cream);margin-bottom:8px;line-height:1.2;}
+.routing-card-body{font-size:12px;color:rgba(247,243,236,0.45);line-height:1.55;}
+.routing-card-placeholder{font-size:10px;color:rgba(247,243,236,0.2);font-style:italic;margin-top:8px;border-top:1px solid rgba(247,243,236,0.06);padding-top:8px;}
+.routing-card-link{display:inline-block;margin-top:12px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-lt);text-decoration:none;}
+
+/* Retake */
+.retake-section{text-align:center;padding:60px 40px;background:var(--warm);}
+.btn-retake{background:var(--ink);color:var(--cream);border:none;padding:16px 36px;font-family:'Lato',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:background 0.18s;}
+.btn-retake:hover{background:var(--forest);}
+.retake-note{font-size:12px;color:var(--slate);margin-top:12px;font-style:italic;}
+
+/* ── UTILS ────────────────────────────────────────────── */
+.forest-rule{border:none;border-top:1px solid var(--rule);margin:48px 0;}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease;}
+.reveal.visible{opacity:1;transform:none;}
+@media(max-width:768px){
+  .cover-inner,.cover-footer{padding-left:28px;padding-right:28px;}
+  .intro-section,.domain-map-section,.results-body{padding-left:20px;padding-right:20px;}
+  .assessment-section,.results-header,.routing-section{padding-left:20px;padding-right:20px;}
+  .score-bar-row{grid-template-columns:90px 1fr 40px;}
+  .how-steps{grid-template-columns:1fr 1fr;}
+  .domain-card-sidebar{padding:24px 20px;}
+  .domain-card-body{padding:24px 20px;}
+}
+</style>
+</head>
+<body>
+<div id="reading-progress"></div>
+
+<!-- Return-to-site bar -->
+<div style="position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(14,12,9,0.95); backdrop-filter:blur(8px); padding:10px 24px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(212,169,58,0.15); font-family:'DM Sans', sans-serif;">
+  <a href="https://thewayofmovement.com.au" style="color:#d4a93a; text-decoration:none; font-size:11px; letter-spacing:0.1em; font-weight:500;">← The Way of Movement</a>
+  <span style="color:rgba(237,231,217,0.4); font-size:10px; letter-spacing:0.16em; text-transform:uppercase;">Three Strengths Assessment</span>
+</div>
+
+<!-- ═══ COVER ══════════════════════════════════════════ -->
+<section class="cover" id="top">
+  <div class="cover-bg"></div>
+  <div class="cover-inner">
+    <div class="cover-kicker">The Way of Movement — Assessment Framework</div>
+    <h1 class="cover-title">The Three<br><em>Strengths</em></h1>
+    <p class="cover-sub">A self-paced diagnostic and development guide for understanding where you are genuinely strong, where you have quietly atrophied, and what that imbalance is costing you.</p>
+    <div class="cover-domains">
+      <div class="cover-domain"><div class="domain-pip body"></div><div class="cover-domain-name">The Body</div></div>
+      <div class="cover-domain"><div class="domain-pip mind"></div><div class="cover-domain-name">The Mind</div></div>
+      <div class="cover-domain"><div class="domain-pip inner"></div><div class="cover-domain-name">The Inner Life</div></div>
+    </div>
+    <a href="#intro" class="cover-cta">Begin the Framework <span class="arrow">→</span></a>
+  </div>
+  <div class="cover-footer">
+    <span class="cover-footer-note">Complete in 25–35 minutes · Self-paced · Evidence-based</span>
+    <span class="cover-footer-note">Way of Movement © 2025</span>
+  </div>
+</section>
+
+<!-- ═══ INTRO ══════════════════════════════════════════ -->
+<section class="intro-section" id="intro">
+  <div class="reveal">
+    <div class="intro-kicker">Before You Begin</div>
+    <h2 class="intro-title">Most people have one strength they have quietly abandoned.</h2>
+    <p class="intro-body">Not through malice. Not through laziness. Through the perfectly logical process of doing what worked, doubling down on what came naturally, and allowing the domains that didn't yield immediate reward to quietly fade.</p>
+    <p class="intro-body">The athlete who trains six days a week but hasn't sat with a difficult thought in years. The executive who processes information at extraordinary speed but whose body operates at a constant low-level emergency. The person who has done enormous inner work but hasn't built the physical capacity to act on what they know. <strong>All three are operating at a fraction of what they're capable of.</strong></p>
+    <div class="intro-note">This framework is not a personality test. It doesn't tell you what type you are. It maps where you are right now — which domain is driving your life, which is being neglected, and what the cross-domain costs of that imbalance actually are. The map changes as you change. You should expect to return to it.</div>
+    <div class="intro-rule"></div>
+    <p class="intro-body">The three domains — <strong>The Body</strong>, <strong>The Mind</strong>, and <strong>The Inner Life</strong> — are not independent. They constrain each other. Neglect in one actively limits your capacity in the others. This is not philosophy. It is physiology, neuroscience, and psychology — each pointing at the same thing.</p>
+    <p class="intro-body">The assessment that follows measures each domain through 7 behaviour-based questions. Not what you think you do. Not your aspirations. What you actually do, on an ordinary week, under ordinary pressure.</p>
+    <div class="intro-note">Answer as you are now — not as you were at your best, not as you intend to be. The value of this process is proportional to the honesty you bring to it.</div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══════════════════════════════════ -->
+<div class="how-it-works reveal">
+  <div class="how-inner">
+    <div class="how-kicker">How This Works</div>
+    <div class="how-title">Four stages. One clear map.</div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-step-num">01</div>
+        <div class="how-step-title">Understand the Three Domains</div>
+        <div class="how-step-body">Read the domain maps. Understand what healthy development, over-investment, and atrophy look like in each — before you assess yourself.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">02</div>
+        <div class="how-step-title">Complete the Assessment</div>
+        <div class="how-step-body">21 behaviour-based questions across the three domains. Rate honestly on a 1–5 scale. Takes 10–15 minutes.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">03</div>
+        <div class="how-step-title">Read Your Profile</div>
+        <div class="how-step-body">Your scores generate a profile with a specific name, a cross-domain imbalance analysis, and evidence-backed interpretation.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">04</div>
+        <div class="how-step-title">Follow Your Pathway</div>
+        <div class="how-step-body">Receive a prioritised development pathway and product routing — where to go next based on your specific profile.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ DOMAIN MAPS ════════════════════════════════════ -->
+<section class="domain-map-section" id="domains">
+  <div class="domain-map-inner">
+    <div class="reveal">
+      <div class="section-kicker" style="color:var(--forest3);">Stage One — Understand the Domains</div>
+      <h2 class="section-title">The Three Domains</h2>
+      <p class="section-sub">Read each domain carefully before you assess. The more accurately you understand what each one looks like in practice, the more honest your self-assessment will be.</p>
+    </div>
+
+    <!-- THE BODY -->
+    <div class="domain-card reveal">
+      <div class="domain-card-sidebar body-s">
+        <div class="domain-icon">⬡</div>
+        <div class="domain-tag">Domain One</div>
+        <div class="domain-name">The Body</div>
+        <div class="domain-alt">Physical strength</div>
+        <div class="domain-premise">Your physical capacity — not just fitness, but the relationship between your body and your nervous system. How you handle physical stress, how you recover, how you move, and what your body's baseline state tells you about your overall health.</div>
+      </div>
+      <div class="domain-card-body">
+        <div class="domain-states">
+          <div class="domain-state">
+            <div class="state-label healthy">Healthy Development</div>
+            <div class="state-body">Consistent physical practice that challenges and recovers. Sleep that is treated as performance infrastructure. Nutrition that fuels rather than just fills. A body that feels capable rather than managed. Physical stress that is progressive and intentional.</div>
+          </div>
+          <div class="domain-state">
+            <div class="state-label over">Over-Investment</div>
+            <div class="state-body">Training that is compulsive rather than purposeful. Identity so wrapped in physical performance that injury triggers identity crisis. Physical discipline used to avoid emotional and mental development. The body as the only arena where control is exercised.</div>
+          </div>
+          <div class="domain-state">
+            <div class="state-label atrophy">Atrophy Signs</div>
+            <div class="state-body">Chronic fatigue treated as normal. Sleep deprioritised for productivity. Physical practice irregular or non-existent. The body as a vehicle for the brain — maintained at minimum rather than developed. Stress that accumulates in the body without conscious management.</div>
+          </div>
+          <div class="domain-state">
+            <div class="state-label" style="color:var(--mind-dom);">Cross-Domain Effect</div>
+            <div class="state-body">Physical neglect degrades mental clarity through cortisol dysregulation, sleep debt, and reduced cardiovascular output to the brain. It limits emotional resilience by removing one of the most reliable mechanisms for stress processing. <em>The body is not separate from the mind — it is its substrate.</em></div>
+          </div>
+        </div>
+        <div class="domain-cost">
+          <div class="domain-cost-label">What the Research Shows</div>
+          <div class="domain-cost-body">Aerobic exercise increases BDNF (brain-derived neurotrophic factor) — the protein responsible for neuroplasticity and learning. Physical fitness is one of the strongest predictors of executive function, emotional regulation, and depression prevention across all age groups. Sedentary behaviour is not neutral — it is an active stressor on the system. <em>(Ratey, 2008; Cotman & Berchtold, 2002; Blumenthal et al., 2007)</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE MIND -->
+    <div class="domain-card reveal">
+      <div class="domain-card-sidebar mind-s">
+        <div class="domain-icon">◈</div>
+        <div class="domain-tag">Domain Two</div>
+        <div class="domain-name">The Mind</div>
+        <div class="domain-alt">Mental strength</div>
+        <div class="domain-premise">Your cognitive capacity — the quality of your attention, the rigour of your thinking, your ability to learn, adapt, and operate clearly under pressure. Not intelligence, but the discipline of thought: how you direct your mind and what you allow to occupy it.</div>
+      </div>
+      <div class="domain-card-body">
+        <div class="domain-states">
+          <div class="domain-state">
+            <div class="state-label healthy">Healthy Development</div>
+            <div class="state-body">Intentional attention — the ability to choose what occupies your thinking rather than being pulled reactively. Regular engagement with challenging ideas. Comfort with ambiguity and complexity. The capacity to sit with a difficult problem without immediately reaching for distraction or certainty.</div>
+          </div>
+          <div class="domain-state">
+            <div class="state-label over">Over-Investment</div>
+            <div class="state-body">Intellectual activity used to avoid emotional engagement. Analysis paralysis — thinking as a substitute for action or feeling. Cognitive dominance over other people — using intelligence as status or armour. Chronic information consumption with no integration or reflection. Thinking about your life instead of living it.</div>
+          </div>
+          <div class="domain-state">
+            <div class="state-label atrophy">Atrophy Signs</div>
+            <div class="state-body">Attention that is fragmented and reactive — pulled by notifications, shallow content, and urgency rather than directed by intention. Avoidance of challenging ideas or perspectives that threaten current beliefs. Thinking on autopilot. No genuine intellectual development in years. Outsourcing judgment to others' opinions.</div>
+          </div>
+          <div class="domain-state">
+            <div class="state-label" style="color:var(--inner-dom);">Cross-Domain Effect</div>
+            <div class="state-body">Mental overdevelopment without emotional counterweight produces decisions that are analytically sound but emotionally and relationally costly. Mental atrophy leads to reactive decision-making — the body's stress signals drive behaviour because the mind isn't present enough to intervene. <em>A mind without stillness is a fire that consumes its fuel.</em></div>
+          </div>
+        </div>
+        <div class="domain-cost">
+          <div class="domain-cost-label">What the Research Shows</div>
+          <div class="domain-cost-body">Attentional capacity is trainable and degrades without practice. Cognitive reserve — built through complex thinking, learning, and novel challenge — is one of the strongest predictors of long-term cognitive health. Chronic fragmented attention (common in digital environments) measurably impairs working memory, planning, and emotional regulation. <em>(Newport, 2016; Kahneman, 2011; Posner & Petersen, 1990)</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE INNER LIFE -->
+    <div class="domain-card reveal">
+      <div class="domain-card-sidebar inner-s">
+        <div class="domain-icon">◎</div>
+        <div class="domain-tag">Domain Three</div>
+        <div class="domain-name">The Inner Life</div>
+        <div class="domain-alt">Emotional strength</div>
+        <div class="domain-premise">Your emotional intelligence and relational depth — the capacity to know what you feel, understand why, tolerate difficulty without suppression or explosion, and connect genuinely with others. This is not sensitivity. It is the ability to work with your inner world rather than being controlled by it.</div>
+      </div>
+      <div class="domain-card-body">
+        <div class="domain-states">
+          <div class="domain-state">
+            <div class="state-label healthy">Healthy Development</div>
+            <div class="state-body">Emotional literacy — the ability to accurately identify and name what you feel. The capacity to sit with difficult emotions without immediately acting on or suppressing them. Genuine vulnerability in appropriate contexts. Relationships of depth and honesty. A stable sense of self that isn't dependent on external validation or performance.</div>
+          </div>
+          <div class="domain-state">
+            <div class="state-label over">Over-Investment</div>
+            <div class="state-body">Emotional sensitivity that becomes paralysis — difficulty making decisions without full emotional alignment. Over-processing feelings as a substitute for action. Relationships that are intense but unstable. Emotional experience prioritised over practical effectiveness. Using inner work as a way to avoid outer commitments.</div>
+          </div>
+          <div class="domain-state">
+            <div class="state-label atrophy">Atrophy Signs</div>
+            <div class="state-body">Difficulty identifying or naming emotions beyond "fine," "stressed," or "tired." Relationships that are functional but not genuinely close. Emotional suppression as a default — pushing through rather than processing. Patterns in relationships or behaviour that repeat despite genuine effort to change them. Chronic irritability without understanding its source.</div>
+          </div>
+          <div class="domain-state">
+            <div class="state-label" style="color:var(--body-dom);">Cross-Domain Effect</div>
+            <div class="state-body">Emotional atrophy is the silent limiter of both physical and mental performance. Unprocessed emotional content creates chronic physiological stress — elevated cortisol, disrupted HRV, impaired recovery. Decisions made without emotional awareness frequently repeat patterns regardless of cognitive understanding. <em>You cannot think your way out of something you haven't felt.</em></div>
+          </div>
+        </div>
+        <div class="domain-cost">
+          <div class="domain-cost-label">What the Research Shows</div>
+          <div class="domain-cost-body">Emotional intelligence (EI) accounts for up to 58% of job performance across all fields (Bradberry & Greaves, 2009). Alexithymia — difficulty identifying and describing emotions — is strongly associated with physical health problems including cardiovascular disease, IBS, and chronic pain. Social connection is as powerful a health variable as physical exercise, with social isolation associated with equivalent mortality risk to smoking 15 cigarettes daily. <em>(Holt-Lunstad et al., 2010; Taylor et al., 1997)</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ASSESSMENT ═══════════════════════════════════════ -->
+<section class="assessment-section" id="assessment">
+  <div class="assess-inner">
+    <div class="assess-kicker">Stage Two — The Assessment</div>
+    <h2 class="assess-title">21 Questions. Three Domains.</h2>
+    <p class="assess-sub">Rate each statement as it applies to your ordinary life — an average week, under ordinary pressure. Not your best week. Not your intentions. What's actually true right now.</p>
+    <p class="assess-note">1 = Rarely or never true for me · 2 = Occasionally true · 3 = Sometimes true, sometimes not · 4 = Usually true · 5 = Consistently and reliably true for me</p>
+    <div class="assess-progress-track">
+      <div class="assess-progress-fill" id="assess-progress"></div>
+    </div>
+    <div class="assess-progress-label" id="assess-progress-label">0 of 21 questions answered</div>
+
+    <!-- THE BODY QUESTIONS -->
+    <div class="domain-block">
+      <div class="domain-block-header">
+        <div class="domain-block-pip body"></div>
+        <div class="domain-block-name">The Body</div>
+        <div class="domain-block-note">Questions 1–7</div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">I engage in deliberate physical training at least 3 times per week — not incidental movement, but intentional, progressive practice. <em>(Running errands or walking to work counts as incidental — this means training that challenges you.)</em></div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="b1" id="b1-1" value="1"><label for="b1-1"><span class="q-option-num">1</span><span class="q-option-label">Rarely</span></label></div>
+          <div class="q-option"><input type="radio" name="b1" id="b1-2" value="2"><label for="b1-2"><span class="q-option-num">2</span><span class="q-option-label">Occasionally</span></label></div>
+          <div class="q-option"><input type="radio" name="b1" id="b1-3" value="3"><label for="b1-3"><span class="q-option-num">3</span><span class="q-option-label">Sometimes</span></label></div>
+          <div class="q-option"><input type="radio" name="b1" id="b1-4" value="4"><label for="b1-4"><span class="q-option-num">4</span><span class="q-option-label">Usually</span></label></div>
+          <div class="q-option"><input type="radio" name="b1" id="b1-5" value="5"><label for="b1-5"><span class="q-option-num">5</span><span class="q-option-label">Reliably</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Rarely or never</span><span class="q-scale-end">Consistently true</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">I consistently get 7–9 hours of sleep. <em>(If you regularly get less than 7 hours: score 4–5 if this is genuinely due to circumstances outside your control — a young child, a medical condition, shift work. Score 1–2 if it is a habitual trade you make for productivity, screens, or social life. The distinction matters.)</em></div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="b2" id="b2-1" value="1"><label for="b2-1"><span class="q-option-num">1</span><span class="q-option-label">Rarely</span></label></div>
+          <div class="q-option"><input type="radio" name="b2" id="b2-2" value="2"><label for="b2-2"><span class="q-option-num">2</span><span class="q-option-label">Occasionally</span></label></div>
+          <div class="q-option"><input type="radio" name="b2" id="b2-3" value="3"><label for="b2-3"><span class="q-option-num">3</span><span class="q-option-label">Sometimes</span></label></div>
+          <div class="q-option"><input type="radio" name="b2" id="b2-4" value="4"><label for="b2-4"><span class="q-option-num">4</span><span class="q-option-label">Usually</span></label></div>
+          <div class="q-option"><input type="radio" name="b2" id="b2-5" value="5"><label for="b2-5"><span class="q-option-num">5</span><span class="q-option-label">Reliably</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Rarely or never</span><span class="q-scale-end">Consistently true</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">My body's baseline state is one of energy and readiness — not chronic fatigue that I manage with caffeine and willpower.</div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="b3" id="b3-1" value="1"><label for="b3-1"><span class="q-option-num">1</span><span class="q-option-label">Rarely</span></label></div>
+          <div class="q-option"><input type="radio" name="b3" id="b3-2" value="2"><label for="b3-2"><span class="q-option-num">2</span><span class="q-option-label">Occasionally</span></label></div>
+          <div class="q-option"><input type="radio" name="b3" id="b3-3" value="3"><label for="b3-3"><span class="q-option-num">3</span><span class="q-option-label">Sometimes</span></label></div>
+          <div class="q-option"><input type="radio" name="b3" id="b3-4" value="4"><label for="b3-4"><span class="q-option-num">4</span><span class="q-option-label">Usually</span></label></div>
+          <div class="q-option"><input type="radio" name="b3" id="b3-5" value="5"><label for="b3-5"><span class="q-option-num">5</span><span class="q-option-label">Reliably</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Rarely or never</span><span class="q-scale-end">Consistently true</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">When I am under stress, I use physical movement — training, walking, breathwork — as a deliberate tool for regulation, rather than defaulting to food, screens, alcohol, or passive recovery.</div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="b4" id="b4-1" value="1"><label for="b4-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="b4" id="b4-2" value="2"><label for="b4-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="b4" id="b4-3" value="3"><label for="b4-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="b4" id="b4-4" value="4"><label for="b4-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="b4" id="b4-5" value="5"><label for="b4-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Rarely or never</span><span class="q-scale-end">Consistently true</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">I eat in a way that is primarily guided by how I want to feel and perform — not primarily by habit, convenience, or emotional state.</div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="b5" id="b5-1" value="1"><label for="b5-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="b5" id="b5-2" value="2"><label for="b5-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="b5" id="b5-3" value="3"><label for="b5-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="b5" id="b5-4" value="4"><label for="b5-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="b5" id="b5-5" value="5"><label for="b5-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Rarely or never</span><span class="q-scale-end">Consistently true</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">I can honestly say my physical capacity has improved or been maintained over the past 12 months — I haven't been quietly declining. <em>(Be honest here. Most people overestimate.)</em></div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="b6" id="b6-1" value="1"><label for="b6-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="b6" id="b6-2" value="2"><label for="b6-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="b6" id="b6-3" value="3"><label for="b6-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="b6" id="b6-4" value="4"><label for="b6-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="b6" id="b6-5" value="5"><label for="b6-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Declining</span><span class="q-scale-end">Consistently improving</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">When I finish a period of genuine physical effort — a hard training session, a physical challenge — I feel the particular kind of satisfaction that comes from having demanded something real of my body. <em>(This tests whether physical challenge is part of your experience at all.)</em></div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="b7" id="b7-1" value="1"><label for="b7-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="b7" id="b7-2" value="2"><label for="b7-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="b7" id="b7-3" value="3"><label for="b7-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="b7" id="b7-4" value="4"><label for="b7-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="b7" id="b7-5" value="5"><label for="b7-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Never — not in my life</span><span class="q-scale-end">Regularly and recently</span></div>
+      </div>
+    </div>
+
+    <!-- THE MIND QUESTIONS -->
+    <div class="domain-block">
+      <div class="domain-block-header">
+        <div class="domain-block-pip mind"></div>
+        <div class="domain-block-name">The Mind</div>
+        <div class="domain-block-note">Questions 8–14</div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">I regularly engage with ideas that challenge or complicate what I currently believe — through books, long-form writing, or genuine conversation — not just content that confirms my existing views.</div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="m1" id="m1-1" value="1"><label for="m1-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="m1" id="m1-2" value="2"><label for="m1-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="m1" id="m1-3" value="3"><label for="m1-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="m1" id="m1-4" value="4"><label for="m1-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="m1" id="m1-5" value="5"><label for="m1-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Rarely or never</span><span class="q-scale-end">Consistently true</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">I can direct my attention deliberately for extended periods — at least 60–90 minutes of focused work without being pulled by notifications, distraction, or the urge to switch tasks. <em>(This is not natural for most people. Be honest.)</em></div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="m2" id="m2-1" value="1"><label for="m2-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="m2" id="m2-2" value="2"><label for="m2-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="m2" id="m2-3" value="3"><label for="m2-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="m2" id="m2-4" value="4"><label for="m2-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="m2" id="m2-5" value="5"><label for="m2-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Rarely or never</span><span class="q-scale-end">Consistently true</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">When I face a complex or ambiguous problem, I am comfortable sitting with uncertainty — I don't immediately reach for a premature answer, an outside opinion, or a distraction to relieve the discomfort of not knowing.</div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="m3" id="m3-1" value="1"><label for="m3-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="m3" id="m3-2" value="2"><label for="m3-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="m3" id="m3-3" value="3"><label for="m3-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="m3" id="m3-4" value="4"><label for="m3-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="m3" id="m3-5" value="5"><label for="m3-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Rarely or never</span><span class="q-scale-end">Consistently true</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">My use of screens and information is intentional rather than reactive — I decide what to consume and when, rather than being pulled into consumption by habit, boredom, or anxiety.</div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="m4" id="m4-1" value="1"><label for="m4-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="m4" id="m4-2" value="2"><label for="m4-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="m4" id="m4-3" value="3"><label for="m4-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="m4" id="m4-4" value="4"><label for="m4-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="m4" id="m4-5" value="5"><label for="m4-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Reactive by default</span><span class="q-scale-end">Intentional by design</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">I can genuinely change my mind when presented with good evidence or a compelling argument — I don't primarily defend my current positions as identity. <em>(The test: when did you last publicly admit you were wrong about something?)</em></div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="m5" id="m5-1" value="1"><label for="m5-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="m5" id="m5-2" value="2"><label for="m5-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="m5" id="m5-3" value="3"><label for="m5-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="m5" id="m5-4" value="4"><label for="m5-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="m5" id="m5-5" value="5"><label for="m5-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Rarely or never</span><span class="q-scale-end">Consistently true</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">I regularly reflect on my thinking — not just what I think, but how I'm thinking. I notice my own cognitive patterns, biases, and blind spots with some degree of accuracy.</div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="m6" id="m6-1" value="1"><label for="m6-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="m6" id="m6-2" value="2"><label for="m6-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="m6" id="m6-3" value="3"><label for="m6-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="m6" id="m6-4" value="4"><label for="m6-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="m6" id="m6-5" value="5"><label for="m6-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Rarely or never</span><span class="q-scale-end">Consistently true</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">The quality of my thinking under pressure — when I'm stressed, tired, or in conflict — remains reasonably consistent with my thinking when calm. I don't collapse cognitively under stress.</div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="m7" id="m7-1" value="1"><label for="m7-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="m7" id="m7-2" value="2"><label for="m7-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="m7" id="m7-3" value="3"><label for="m7-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="m7" id="m7-4" value="4"><label for="m7-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="m7" id="m7-5" value="5"><label for="m7-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Significantly deteriorates</span><span class="q-scale-end">Remains stable</span></div>
+      </div>
+    </div>
+
+    <!-- THE INNER LIFE QUESTIONS -->
+    <div class="domain-block">
+      <div class="domain-block-header">
+        <div class="domain-block-pip inner"></div>
+        <div class="domain-block-name">The Inner Life</div>
+        <div class="domain-block-note">Questions 15–21</div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">When something difficult happens — a conflict, a failure, a disappointment — I can usually identify what I'm actually feeling within a reasonable period of time, rather than noticing only "stressed" or "fine." <em>(Emotional vocabulary is a skill, not a personality trait.)</em></div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="i1" id="i1-1" value="1"><label for="i1-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="i1" id="i1-2" value="2"><label for="i1-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="i1" id="i1-3" value="3"><label for="i1-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="i1" id="i1-4" value="4"><label for="i1-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="i1" id="i1-5" value="5"><label for="i1-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Rarely or never</span><span class="q-scale-end">Consistently true</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">I have at least one relationship in my life where genuine honesty is possible — where I could tell the truth about something difficult and trust it would be received without judgment. <em>(The absence of this is more common than people admit.)</em></div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="i2" id="i2-1" value="1"><label for="i2-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="i2" id="i2-2" value="2"><label for="i2-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="i2" id="i2-3" value="3"><label for="i2-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="i2" id="i2-4" value="4"><label for="i2-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="i2" id="i2-5" value="5"><label for="i2-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">No relationship like this</span><span class="q-scale-end">Multiple relationships like this</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">I am not running a pattern in my relationships — a recurring dynamic, a repeating conflict, a habitual way of withdrawing or overreacting — that I haven't been able to change despite genuinely trying.</div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="i3" id="i3-1" value="1"><label for="i3-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="i3" id="i3-2" value="2"><label for="i3-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="i3" id="i3-3" value="3"><label for="i3-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="i3" id="i3-4" value="4"><label for="i3-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="i3" id="i3-5" value="5"><label for="i3-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Strong persistent pattern</span><span class="q-scale-end">No persistent pattern</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">My sense of who I am doesn't depend primarily on external performance, status, or other people's approval. When performance drops or recognition is absent, I remain basically stable.</div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="i4" id="i4-1" value="1"><label for="i4-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="i4" id="i4-2" value="2"><label for="i4-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="i4" id="i4-3" value="3"><label for="i4-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="i4" id="i4-4" value="4"><label for="i4-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="i4" id="i4-5" value="5"><label for="i4-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Highly dependent on external</span><span class="q-scale-end">Stable and internally grounded</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">I can sit in silence — without a screen, without a podcast, without a task — for a period of time without significant discomfort. <em>(This is a direct measure of your relationship with your own inner world.)</em></div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="i5" id="i5-1" value="1"><label for="i5-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="i5" id="i5-2" value="2"><label for="i5-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="i5" id="i5-3" value="3"><label for="i5-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="i5" id="i5-4" value="4"><label for="i5-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="i5" id="i5-5" value="5"><label for="i5-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Very uncomfortable — avoid it</span><span class="q-scale-end">Comfortable, even welcome it</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">I process difficult experiences rather than suppressing them or being consumed by them — I can move through grief, anger, and disappointment without either shutting down or getting stuck. <em>(Processing doesn't mean talking about it constantly — it means it moves.)</em></div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="i6" id="i6-1" value="1"><label for="i6-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="i6" id="i6-2" value="2"><label for="i6-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="i6" id="i6-3" value="3"><label for="i6-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="i6" id="i6-4" value="4"><label for="i6-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="i6" id="i6-5" value="5"><label for="i6-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Shut down or stuck</span><span class="q-scale-end">Move through reliably</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-text">I have a reasonably clear sense of what matters to me and why — not borrowed from culture, family expectation, or professional identity, but genuinely mine. I live in alignment with it more often than not.</div>
+        <div class="q-scale">
+          <div class="q-option"><input type="radio" name="i7" id="i7-1" value="1"><label for="i7-1"><span class="q-option-num">1</span></label></div>
+          <div class="q-option"><input type="radio" name="i7" id="i7-2" value="2"><label for="i7-2"><span class="q-option-num">2</span></label></div>
+          <div class="q-option"><input type="radio" name="i7" id="i7-3" value="3"><label for="i7-3"><span class="q-option-num">3</span></label></div>
+          <div class="q-option"><input type="radio" name="i7" id="i7-4" value="4"><label for="i7-4"><span class="q-option-num">4</span></label></div>
+          <div class="q-option"><input type="radio" name="i7" id="i7-5" value="5"><label for="i7-5"><span class="q-option-num">5</span></label></div>
+        </div>
+        <div class="q-scale-ends"><span class="q-scale-end">Unclear, borrowed, misaligned</span><span class="q-scale-end">Clear, mine, lived</span></div>
+      </div>
+    </div>
+
+    <div class="assess-submit-area">
+      <div class="assess-submit-note">All 21 questions must be answered before your results are generated.</div>
+      <button class="btn-submit" id="btn-submit" onclick="generateResults()" disabled>Generate My Profile →</button>
+      <div class="assess-incomplete-msg" id="incomplete-msg">Please answer all 21 questions to continue.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RESULTS (dynamically generated) ════════════════ -->
+<div id="results-section"></div>
+
+<script>
+/* ── PROFILE DATA ─────────────────────────────────────── */
+var PROFILES = {
+  // Primary archetype names and descriptions based on dominant/deficit pattern
+  // Format: [body, mind, inner] relative levels determine profile
+  
+  engine: {
+    name: "The Engine",
+    subtitle: "Physical dominant · Built but contained",
+    description: `You have built something real in your body. The discipline is there — the training, the physical capability, the relationship with effort and recovery. Your physical domain is your most developed strength, and it is a genuine one.
+
+But there is a cost to dominance without counterweight. <strong>The body is the engine, but without the navigation of the mind and the depth of the inner life, it runs without direction.</strong> Physical discipline can become a container — a place where control is exercised because other domains feel less predictable. The training happens; the harder work of sitting with what the body is trying to process does not.
+
+What you may recognise: the workout that happens regardless of whether the thing that's actually bothering you ever gets addressed. The physical competence that coexists with a sense that something essential is missing. The capability without the clarity.`,
+    imbalance: "Your physical investment is real, but it may be carrying weight that belongs to the other domains. Physical stress processing is a start — not a complete substitute for emotional processing or genuine intellectual development.",
+    bodyStatus: "strength", mindStatus: "developing", innerStatus: "deficit"
+  },
+
+  strategist: {
+    name: "The Strategist",
+    subtitle: "Mental dominant · Sharp but disconnected",
+    description: `Your mind is your primary instrument. You think clearly, you process quickly, you navigate complexity with more ease than most. The mental domain is genuinely developed — the capacity for rigorous thought, sustained attention, and intellectual engagement is there.
+
+The cost of mental dominance is specific and largely invisible: <strong>the body becomes a vehicle rather than a partner, and the inner life becomes noise to be managed rather than information to be worked with.</strong> The Strategist is highly effective — until the decision requires something beyond analysis. Until the body breaks down because it was maintained at minimum rather than developed. Until a relationship falls apart because the emotional vocabulary was never built.
+
+What you may recognise: decisions that are analytically sound but relationally costly. Productivity that is high but feels hollow. The ability to understand your emotional patterns intellectually without being able to change them. Tiredness that coffee and willpower keep at bay — until they don't.`,
+    imbalance: "Cognitive dominance tends to suppress both physical signals and emotional information. The body's distress is over-ridden by mental focus. The inner life's messages are categorised and filed rather than processed. Both have a reckoning eventually.",
+    bodyStatus: "deficit", mindStatus: "strength", innerStatus: "developing"
+  },
+
+  depth: {
+    name: "The Depth",
+    subtitle: "Inner life dominant · Present but unbuilt",
+    description: `Your inner life is developed. You have done work on yourself — you have some capacity for emotional honesty, you value depth in relationships, you have a genuine interior life and some relationship with what matters to you. This is rarer than you might think.
+
+The specific challenge for the inner-dominant person is this: <strong>without physical discipline, inner work becomes circular — it processes endlessly without producing transformation. Without mental rigour, it becomes feeling-led and poorly navigated.</strong> The Depth has the raw material for genuine change but may find that the inner world has been the arena of growth while the physical and mental domains have been quietly left behind.
+
+What you may recognise: genuine insight that doesn't translate into changed behaviour. The capacity to articulate what you want that isn't matched by the discipline to pursue it. Physical neglect that carries moral weight — you know you should build this. The frustration of understanding yourself without being able to act on that understanding.`,
+    imbalance: "The inner life without physical grounding often produces insight without momentum. Emotion without cognitive structure often leads to patterns that feel important but are hard to direct. The body and the mind are the infrastructure that makes inner development usable.",
+    bodyStatus: "developing", mindStatus: "developing", innerStatus: "strength"
+  },
+
+  ironwall: {
+    name: "The Iron Wall",
+    subtitle: "Body + Mind dominant · Capable but sealed",
+    description: `You are highly capable. The physical and cognitive dimensions of your life are both developed — you have built discipline in your body and clarity in your mind. By most external measures, you are performing.
+
+<strong>What you have built is a fortress.</strong> The inner life — the emotional domain, genuine relational depth, the capacity to know what you feel and work with it rather than around it — has been left outside the wall. This is not weakness. It is a rational adaptation to environments that reward performance and penalise vulnerability. But adaptation has a cost.
+
+What you may recognise: relationships that are functional but not genuinely close. The sense that something is present in others that you cannot quite access in yourself. Physical and mental performance that coexists with an undercurrent of something that doesn't have a name. The pattern — in relationships, in decisions, in recurring frustrations — that repeats despite your best efforts to think your way out of it.`,
+    imbalance: "The Iron Wall is the most common profile among high-achieving men. The physical and cognitive development is real — but unprocessed emotional content doesn't disappear. It surfaces as chronic irritability, relational distance, psychosomatic symptoms, and the quiet conviction that something important is absent.",
+    bodyStatus: "strength", mindStatus: "strength", innerStatus: "deficit"
+  },
+
+  scholar: {
+    name: "The Scholar",
+    subtitle: "Mind + Inner life dominant · Deep but ungrounded",
+    description: `You think and feel deeply. The combination of genuine cognitive development and a rich inner life produces a person of real depth — someone who can sit with complexity, who understands their own patterns with some accuracy, who engages with ideas and experience with real seriousness.
+
+<strong>The missing infrastructure is the body.</strong> The Scholar is ungrounded — not in a mystical sense, but in a literal physiological one. The body is the foundation of the nervous system, and a body that is chronically under-exercised, sleep-deprived, or nutritionally neglected creates a physiological environment that actively limits the cognitive and emotional work you are trying to do.
+
+What you may recognise: intellectual and emotional sophistication that coexists with physical fragility. The fatigue that limits your best thinking. The emotional reactivity that is worse when you haven't slept or moved your body. The knowledge of what you should do physically — a knowledge that is deep and genuine — that somehow never converts to sustained practice.`,
+    imbalance: "The Scholar's imbalance is physiologically straightforward: the body is the platform everything else runs on. BDNF, cortisol regulation, vagal tone, sleep architecture — these are not peripheral. They are the hardware. The most direct upgrade available to this profile is physical.",
+    bodyStatus: "deficit", mindStatus: "strength", innerStatus: "strength"
+  },
+
+  warrior: {
+    name: "The Grounded One",
+    subtitle: "Body + Inner life dominant · Strong but unfocused",
+    description: `You have two rare developments: a genuine relationship with physical discipline and a genuine relationship with your inner world. The body and the inner life are both cultivated — you know how to push physically and you have some capacity for the depth that makes that pushing meaningful.
+
+<strong>The missing sharpness is cognitive.</strong> The Grounded One has the raw power and the emotional foundation but lacks the mental precision that directs both toward their highest use. This can produce a person who is strong and genuine but who makes decisions by instinct rather than rigour — whose inner conviction is real but whose thinking doesn't always serve that conviction well.
+
+What you may recognise: knowing what matters to you but struggling to construct a plan that reliably gets you there. Making decisions from gut and feeling that are sometimes brilliant and sometimes costly. The frustration of effort that isn't compounding because the strategic intelligence to direct it isn't fully developed.`,
+    imbalance: "Physical capacity and emotional depth without mental discipline produces raw power without accurate aim. The development priority for this profile is building the cognitive rigour that converts genuine strength and genuine values into sustained, directed progress.",
+    bodyStatus: "strength", mindStatus: "deficit", innerStatus: "strength"
+  },
+
+  hollow: {
+    name: "The Hollow Achiever",
+    subtitle: "No dominant domain · Performing but depleted",
+    description: `This is the profile of someone who has been running hard for a long time. Not because nothing has been built — but because what has been built has been built for performance rather than sustainability. You may have had periods where one or two domains were more developed. What the assessment reveals is that right now, across all three, you are operating below your capacity.
+
+<strong>This is not failure. It is information.</strong> The Hollow Achiever is almost always someone who has been giving to external demands — work, family, responsibility — at the expense of the internal investment that makes that giving sustainable. The tank is low. The question is where to start refilling it.
+
+The answer is almost always the physical domain first — not because it is most important, but because it is most concrete, produces results fastest, and creates the physiological conditions that make progress in the other two domains possible.`,
+    imbalance: "All three domains showing deficit simultaneously is a signal of systemic depletion, not character failure. The priority is sequenced replenishment — starting with physical foundations, which create the biological conditions for mental clarity and emotional availability.",
+    bodyStatus: "deficit", mindStatus: "deficit", innerStatus: "deficit"
+  },
+
+  integrated: {
+    name: "The Integrated",
+    subtitle: "Balanced across all three · The ongoing work",
+    description: `Across the three domains, you are showing genuine development in each. This is not common. It reflects either substantial deliberate effort across all three areas, or a natural disposition that has been well-served by your circumstances and choices.
+
+<strong>Balance is not arrival. It is a practice.</strong> The Integrated person's ongoing work is maintenance and depth — not broad development but the continuous refinement of each domain. The risk for this profile is complacency: the domains are in reasonable balance, which can produce the illusion that the work is done. It is not. Each domain has greater depth available. The question shifts from "what am I neglecting?" to "what does the next level of development look like in each domain?"
+
+What this profile most benefits from is the kind of challenge that prevents plateau — new physical demands, genuinely difficult intellectual territory, and emotional depth that goes further than what is currently comfortable.`,
+    imbalance: "The Integrated profile benefits from honest assessment of which domain is subtly stagnating. Balance can mask plateau. The ongoing work is not maintenance — it's the deliberate search for the edge of each domain's current development.",
+    bodyStatus: "strength", mindStatus: "strength", innerStatus: "strength"
+  }
+};
+
+// Badge lookup only — descriptions are now handled by getDomainAnalysis()
+var DOMAIN_BADGES = {
+  body:  { strength:"Strength", overdeveloped:"Over-invested", developing:"Developing", deficit:"Priority Deficit" },
+  mind:  { strength:"Strength", overdeveloped:"Over-invested", developing:"Developing", deficit:"Priority Deficit" },
+  inner: { strength:"Strength", overdeveloped:"Over-invested", developing:"Developing", deficit:"Priority Deficit" }
+};
+var BADGE_CLS = { strength:"badge-strength", overdeveloped:"badge-overdeveloped", developing:"badge-developing", deficit:"badge-deficit" };
+
+// Unified domain analysis — one coherent passage per domain, profile-aware
+function getDomainAnalysis(domain, score, status, profileKey) {
+  const max = 35;
+  const pct = score / max;
+  
+  if (domain === 'body') {
+    if (status === 'strength') {
+      if (profileKey === 'ironwall' || profileKey === 'engine') {
+        return `<p>A score of ${score}/35 places your physical domain firmly in developed territory. The discipline is real — the training, the relationship with physical challenge, the capacity to show up consistently. What the profile pattern adds is a specific question worth sitting with: physical strength at this level, alongside gaps in the other domains, often indicates that the body has become the primary arena of control. Training happens reliably; the harder, less measurable work of the other domains does not. The physical investment is not wasted — but it may be doing more load-bearing than it should.</p>`;
+      }
+      if (profileKey === 'warrior') {
+        return `<p>A score of ${score}/35 reflects genuine physical development. In your profile, the physical and inner life domains are both real strengths — the challenge is ensuring the cognitive domain develops to match them. Physical discipline without strategic direction tends to produce effort that doesn't compound as effectively as it should.</p>`;
+      }
+      return `<p>A score of ${score}/35 indicates that the physical domain is genuinely developed — the practice, the consistency, the relationship with physical challenge are all present. The work here is not to build from scratch but to ensure the physical investment is actively serving the other domains: that training is improving your cognitive clarity, your emotional regulation, and your capacity for the harder inner work — rather than substituting for it.</p>`;
+    }
+    if (status === 'overdeveloped') {
+      return `<p>A score of ${score}/35 is high, and the physical discipline is real. But read in the context of your profile — where the other domains are showing deficits — it raises a specific question: is physical training the place where you are most in control because the other domains feel less predictable? The body is the one arena that responds reliably to effort. That's its appeal when other things are less certain. This doesn't diminish what's been built. It adds important context.</p>`;
+    }
+    if (status === 'developing') {
+      if (pct >= 0.60) {
+        return `<p>A score of ${score}/35 means the physical foundations are there, but inconsistency is the gap. Something is working — the knowledge of what to do, the occasional period of good practice. The question is why consistency hasn't yet been sustained. For most people at this level it is not motivation — it is the absence of a specific, triggered system. "I'll train this week" fails. "When my alarm goes off at 6am, I put on my shoes" works.</p>`;
+      }
+      return `<p>A score of ${score}/35 suggests physical practice is present but fragmented — occurring when circumstances allow rather than as a built system. Sleep, recovery, and nutritional choices are likely similarly inconsistent. The gap here is not knowledge of what to do. The research on what works physically is not complicated. The gap is the translation from knowing to doing — which is a planning and environment design problem, not a willpower problem.</p>`;
+    }
+    if (status === 'deficit') {
+      if (profileKey === 'strategist') {
+        return `<p>A score of ${score}/35 in the physical domain is, for a mind-dominant profile, the most direct performance upgrade available. This is neurobiological as much as physical: aerobic exercise increases BDNF — the protein most directly responsible for the cognitive capacity you care about. Sleep debt measurably degrades executive function, working memory, and emotional regulation. The body is not separate from the cognitive work you are doing. It is its substrate. Improving the physical domain will improve everything else.</p>`;
+      }
+      if (profileKey === 'scholar') {
+        return `<p>A score of ${score}/35 in the physical domain is the clearest gap in an otherwise well-developed profile. The research is direct and consistent: the cognitive and emotional development you have invested in runs on a physiological platform that physical neglect degrades. Your best thinking correlates with your best physical weeks. This is not coincidence — it is biology. BDNF, cortisol regulation, vagal tone, sleep architecture: all affected by physical practice, all affecting the work you care about most.</p>`;
+      }
+      return `<p>A score of ${score}/35 indicates that the physical domain is showing significant deficits. This is important not just in its own right, but because of what it costs the other domains. Chronic physical neglect elevates baseline cortisol, degrades sleep quality, reduces BDNF availability for cognitive function, and removes the most reliable physiological mechanism for emotional stress processing. Whatever you are trying to build in the mental and inner life domains, the physical foundation is currently making that harder than it needs to be.</p>`;
+    }
+  }
+
+  if (domain === 'mind') {
+    if (status === 'strength') {
+      if (profileKey === 'strategist' || profileKey === 'ironwall') {
+        return `<p>A score of ${score}/35 reflects genuine cognitive development — attentional capacity, comfort with complexity, the ability to direct your thinking rather than be pulled by it. In your profile, this is the dominant domain. The specific challenge that comes with mental dominance at this level is what might be called the analysis trap: using cognitive capacity as the primary mode of engaging with every domain of life, including the ones — emotional processing, relational depth, physical sensation — that respond better to other modes entirely. The mind is strong. The work is knowing when not to use it as the primary instrument.</p>`;
+      }
+      if (profileKey === 'scholar') {
+        return `<p>A score of ${score}/35 confirms the mental domain is genuinely developed — and in your profile, it combines with inner life strength to produce real intellectual and emotional depth. The specific risk at this level is that cognitive capacity and inner work become mutually reinforcing loops that are not grounded in physical experience. The best thinking is embodied. The most durable insights are the ones the body has had a chance to process.</p>`;
+      }
+      return `<p>A score of ${score}/35 indicates the mental domain is genuinely developed — intentional attention, intellectual rigour, comfort with difficult ideas. The ongoing work here is not development but direction: ensuring cognitive capacity is being deployed toward what matters most rather than toward what is most immediately stimulating. Strong minds are often most at risk from their own appetite for novelty and complexity.</p>`;
+    }
+    if (status === 'overdeveloped') {
+      return `<p>A score of ${score}/35 is high, but in the context of your profile — where the body and inner life are showing deficits — it suggests that the mental domain has become the primary mode of engaging with everything, including experiences that resist cognitive processing. Emotional experience doesn't become resolved by being understood analytically. The body's signals don't become integrated by being categorised. A strong mind applied to everything eventually produces the specific exhaustion of someone who has been thinking about their life rather than living it.</p>`;
+    }
+    if (status === 'developing') {
+      return `<p>A score of ${score}/35 in the mental domain points to real cognitive capacity that is being limited by attentional fragmentation, reactive information habits, or insufficient engagement with genuinely challenging ideas. The gap here is rarely intelligence — it is practice. Sustained attention is a trainable capacity that degrades without deliberate exercise, exactly like a muscle. The digital environment you live in is specifically engineered to fragment it. Reclaiming it requires an explicit counter-design: specific times for deep work, specific friction around distraction, and deliberate engagement with material that requires genuine effort to process.</p>`;
+    }
+    if (status === 'deficit') {
+      return `<p>A score of ${score}/35 suggests the mental domain is showing meaningful deficits — attention that is reactive rather than directed, or thinking that has been running on autopilot rather than being deliberately cultivated. This compounds: a fragmented mind makes physical development harder to sustain (it's harder to maintain a training practice when your attention is fractured), and makes emotional processing harder to navigate (undirected thinking loops rather than resolves). The entry point is simpler than it sounds: 20 minutes of reading something genuinely difficult, daily, without a phone nearby. That is not a small thing to sustain. It is also one of the most direct interventions available.</p>`;
+    }
+  }
+
+  if (domain === 'inner') {
+    if (status === 'strength') {
+      if (profileKey === 'ironwall') {
+        // Shouldn't appear — iron wall has inner deficit — but safety fallback
+        return `<p>A score of ${score}/35 — higher than expected for this profile. Look carefully at the questions where you scored highest. The inner life dimension that is easiest to develop is intellectual self-awareness — knowing your patterns. The dimension that requires the most development is the capacity to actually feel them rather than observe them.</p>`;
+      }
+      if (profileKey === 'depth') {
+        return `<p>A score of ${score}/35 confirms the inner life is a genuine strength — emotional literacy, some relational depth, a real interior life. What this score doesn't tell you is the degree to which that inner development has translated into changed behaviour in the world. Understanding a pattern and changing it are different capacities. The inner life is the map. The physical discipline and cognitive rigour are the vehicle that makes the map usable. Without them, insight tends to loop rather than progress.</p>`;
+      }
+      if (profileKey === 'scholar') {
+        return `<p>A score of ${score}/35 confirms the inner life is developed — and in combination with your mental strength, it produces genuine depth. The specific work at this level is ensuring the inner life is grounded in physical experience rather than primarily cognitive and reflective. Emotion lives in the body before it reaches language. A body that is chronically under-exercised or sleep-deprived creates a physiological environment that subtly destabilises even well-developed emotional regulation.</p>`;
+      }
+      return `<p>A score of ${score}/35 indicates the inner life is genuinely developed — emotional literacy, relational depth, a sense of self that is reasonably stable and internally grounded. This is the rarest of the three strengths to see fully developed, and it is worth understanding why: most environments, particularly high-performance ones, actively discourage the development of the inner life. That you have developed it is significant. The ongoing work is not to maintain the status quo but to deepen it — specifically in the areas that are still defended, and the relationships that could carry more honesty than they currently do.</p>`;
+    }
+    if (status === 'overdeveloped') {
+      return `<p>A score of ${score}/35 in the inner life domain is high, and in isolation that is a strength. In the context of your profile — where the physical and mental domains are showing deficits — it raises the question of whether the inner domain has become the primary arena of development while the others have been relatively left behind. Rich inner experience without physical grounding tends to become circular. Without cognitive structure, it can become feeling-led in ways that are compelling but hard to direct toward specific changes in behaviour.</p>`;
+    }
+    if (status === 'developing') {
+      return `<p>A score of ${score}/35 means the inner life is in development — some emotional literacy, some genuine connection, but meaningful gaps in the depth and stability that full development in this domain requires. The most common pattern at this level is surface emotional awareness (knowing you are stressed, knowing you are frustrated) without the deeper literacy that can identify what specifically is happening and why. The development entry point is specificity: when something difficult happens, the practice is to sit with the question "what exactly am I feeling?" for longer than is comfortable before moving to explanation or action.</p>`;
+    }
+    if (status === 'deficit') {
+      if (profileKey === 'engine') {
+        return `<p>A score of ${score}/35 in the inner life domain — alongside strong physical scores — produces a specific pattern: the body is used as the primary stress processing mechanism, and it works, up to a point. Physical training genuinely does process stress hormones, improve mood, and provide a sense of competence and control. What it does not do is address the content of the stress. The thing that is actually bothering you doesn't get resolved by the workout, even when the workout makes you feel better. At some point — in a relationship, in a decision, in a recurrence you cannot train your way out of — the inner life's deficit becomes the limiting factor.</p>`;
+      }
+      if (profileKey === 'ironwall') {
+        return `<p>A score of ${score}/35 in the inner life domain is the defining characteristic of this profile. The Iron Wall's emotional deficit is not felt as a gap in most normal circumstances — the physical and cognitive strength is sufficient to perform at a high level, and most environments don't require more. The cost surfaces in specific contexts: relationships that hit a ceiling of depth, decisions that are analytically correct but relationally costly, the persistent sense that something essential is present in others that you cannot quite access in yourself. The entry point is smaller than it sounds: naming what you are actually feeling, with specificity, once per day. Not performing emotional awareness. Actually locating it.</p>`;
+      }
+      return `<p>A score of ${score}/35 indicates that the inner life domain is showing significant deficits. This matters in ways that extend well beyond self-awareness: emotional dysregulation is a direct physiological stressor, creating the same cortisol and HRV disruption as physical stress without the adaptive benefits. Unprocessed emotional content doesn't disappear — it surfaces as chronic irritability, impulsive decisions, psychosomatic symptoms, and the relational patterns that repeat despite genuine effort to change them. The research on this is consistent and substantial. This is not a peripheral domain.</p>`;
+    }
+  }
+  
+  return '';
+}
+
+/* ── SCORING ENGINE ─────────────────────────────────── */
+function getScore(names) {
+  return names.reduce((sum, name) => {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return sum + (el ? parseInt(el.value) : 0);
+  }, 0);
+}
+
+function classifyDomain(score) {
+  const pct = score / 35; // max 35 (7 questions × 5)
+  if (pct >= 0.80) return 'strength';
+  if (pct >= 0.60) return 'developing';
+  return 'deficit';
+}
+
+function selectProfile(b, m, i, bScore, mScore, iScore) {
+  // All strong
+  if (b === 'strength' && m === 'strength' && i === 'strength') return 'integrated';
+  // All deficit
+  if (b === 'deficit' && m === 'deficit' && i === 'deficit') return 'hollow';
+  // Dual dominant
+  if (b === 'strength' && m === 'strength') return 'ironwall';
+  if (m === 'strength' && i === 'strength') return 'scholar';
+  if (b === 'strength' && i === 'strength') return 'warrior';
+  // Single dominant — use highest score
+  const max = Math.max(bScore, mScore, iScore);
+  if (bScore === max) return 'engine';
+  if (mScore === max) return 'strategist';
+  return 'depth';
+}
+
+function getDomainStatus(domainClass, profileData, domain) {
+  // Use profile-defined status if available, otherwise use score class
+  if (profileData[domain + 'Status']) return profileData[domain + 'Status'];
+  return domainClass;
+}
+
+function generateResults() {
+  // Check completion
+  const allNames = ['b1','b2','b3','b4','b5','b6','b7','m1','m2','m3','m4','m5','m6','m7','i1','i2','i3','i4','i5','i6','i7'];
+  const unanswered = allNames.filter(n => !document.querySelector(`input[name="${n}"]:checked`));
+  if (unanswered.length > 0) {
+    document.getElementById('incomplete-msg').style.display = 'block';
+    return;
+  }
+
+  const bScore = getScore(['b1','b2','b3','b4','b5','b6','b7']);
+  const mScore = getScore(['m1','m2','m3','m4','m5','m6','m7']);
+  const iScore = getScore(['i1','i2','i3','i4','i5','i6','i7']);
+
+  const bClass = classifyDomain(bScore);
+  const mClass = classifyDomain(mScore);
+  const iClass = classifyDomain(iScore);
+
+  const profileKey = selectProfile(bClass, mClass, iClass, bScore, mScore, iScore);
+  const profile = PROFILES[profileKey];
+
+  const bPct = Math.round((bScore / 35) * 100);
+  const mPct = Math.round((mScore / 35) * 100);
+  const iPct = Math.round((iScore / 35) * 100);
+
+  const bStatus = getDomainStatus(bClass, profile, 'body');
+  const mStatus = getDomainStatus(mClass, profile, 'mind');
+  const iStatus = getDomainStatus(iClass, profile, 'inner');
+
+  // Build pathway cards based on profile
+  const pathways = buildPathways(profileKey, bClass, mClass, iClass);
+  // Build routing based on profile  
+  const routing = buildRouting(profileKey, bClass, mClass, iClass);
+
+  const html = `
+    <div class="results-header">
+      <div class="results-header-inner">
+        <div class="results-kicker">Your Profile</div>
+        <div class="results-name">${profile.name}</div>
+        <div class="results-subtitle">${profile.subtitle}</div>
+        <div class="score-bars">
+          <div class="score-bar-row">
+            <div class="score-bar-label body">The Body</div>
+            <div class="score-bar-track"><div class="score-bar-fill body" id="bar-body" style="width:0%"></div></div>
+            <div class="score-bar-val" style="color:#6ab44a;">${bScore}/35</div>
+          </div>
+          <div class="score-bar-row">
+            <div class="score-bar-label mind">The Mind</div>
+            <div class="score-bar-track"><div class="score-bar-fill mind" id="bar-mind" style="width:0%"></div></div>
+            <div class="score-bar-val" style="color:#6a9ad4;">${mScore}/35</div>
+          </div>
+          <div class="score-bar-row">
+            <div class="score-bar-label inner">The Inner Life</div>
+            <div class="score-bar-track"><div class="score-bar-fill inner" id="bar-inner" style="width:0%"></div></div>
+            <div class="score-bar-val" style="color:#c46aaa;">${iScore}/35</div>
+          </div>
+        </div>
+        <div class="profile-card">
+          <div class="profile-card-kicker">Profile Description</div>
+          <div class="profile-card-name">${profile.name}</div>
+          <div class="profile-card-body">${profile.description}</div>
+        </div>
+        <div class="imbalance-alert">
+          <div class="imbalance-label">Cross-Domain Imbalance Analysis</div>
+          <div class="imbalance-body">${profile.imbalance}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="results-body">
+      <div class="results-section">
+        <div class="results-section-kicker">Domain-by-Domain Analysis</div>
+        <div class="results-section-title">Where You Are — And What It Means</div>
+        <div class="results-section-body">The following analysis reads your scores in context — not as independent numbers, but as a pattern. The meaning of any individual domain score changes significantly depending on the pattern it sits within.</div>
+
+        <div class="domain-result">
+          <div class="domain-result-accent body"></div>
+          <div class="domain-result-content">
+            <div class="domain-result-header">
+              <div class="domain-result-name">The Body — ${bScore}/35</div>
+              <div class="domain-result-badge ${BADGE_CLS[bStatus]}">${DOMAIN_BADGES.body[bStatus]}</div>
+            </div>
+            <div class="domain-result-body">${getDomainAnalysis('body', bScore, bStatus, profileKey)}</div>
+          </div>
+        </div>
+
+        <div class="domain-result">
+          <div class="domain-result-accent mind"></div>
+          <div class="domain-result-content">
+            <div class="domain-result-header">
+              <div class="domain-result-name">The Mind — ${mScore}/35</div>
+              <div class="domain-result-badge ${BADGE_CLS[mStatus]}">${DOMAIN_BADGES.mind[mStatus]}</div>
+            </div>
+            <div class="domain-result-body">${getDomainAnalysis('mind', mScore, mStatus, profileKey)}</div>
+          </div>
+        </div>
+
+        <div class="domain-result">
+          <div class="domain-result-accent inner"></div>
+          <div class="domain-result-content">
+            <div class="domain-result-header">
+              <div class="domain-result-name">The Inner Life — ${iScore}/35</div>
+              <div class="domain-result-badge ${BADGE_CLS[iStatus]}">${DOMAIN_BADGES.inner[iStatus]}</div>
+            </div>
+            <div class="domain-result-body">${getDomainAnalysis('inner', iScore, iStatus, profileKey)}</div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="results-rule">
+
+      <div class="results-section">
+        <div class="results-section-kicker">Development Pathway</div>
+        <div class="results-section-title">Where to Focus — and Why</div>
+        <div class="results-section-body">Development across all three domains must happen in parallel — but not with equal intensity at every moment. The following priorities reflect your specific profile: what to begin, what to deepen, and what to maintain.</div>
+        <div class="pathway-grid">${pathways}</div>
+      </div>
+
+      <hr class="results-rule">
+
+      ${routing}
+    </div>
+
+    <div class="retake-section">
+      <button class="btn-retake" onclick="retake()">Retake the Assessment</button>
+      <div class="retake-note">This assessment is a snapshot. It is worth repeating every 3–6 months or after a significant life change.</div>
+    </div>
+  `;
+
+  const resultsEl = document.getElementById('results-section');
+  resultsEl.innerHTML = html;
+  resultsEl.style.display = 'block';
+  resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // Animate bars after render
+  setTimeout(() => {
+    document.getElementById('bar-body').style.width = bPct + '%';
+    document.getElementById('bar-mind').style.width = mPct + '%';
+    document.getElementById('bar-inner').style.width = iPct + '%';
+  }, 300);
+}
+
+/* ── DETAIL TEXT BY SCORE ───────────────────────────── */
+
+/* ── PATHWAY BUILDER ────────────────────────────────── */
+function buildPathways(profileKey, b, m, i) {
+  const priorities = [];
+
+  if (profileKey === 'ironwall') {
+    priorities.push({domain:'inner', priority:'Priority One', title:'Build the Inner Life', body:"The Iron Wall\u2019s most impactful work is in the emotional domain. Start with emotional literacy \u2014 specifically the ability to name what you are feeling with precision. The Feelings Wheel is a useful starting tool. Journalling that focuses on emotional specificity rather than event narration. One conversation per week that goes deeper than functional."});
+    priorities.push({domain:'body', priority:'Maintain', title:'Protect Physical Investment', body:"The physical domain is developed \u2014 protect it. The risk for this profile is that inner life development, when it begins, can temporarily destabilise productivity and performance. Physical practice is the most reliable anchor during this process."});
+    priorities.push({domain:'mind', priority:'Redirect', title:'From Analysis to Wisdom', body:"The mental strength is present \u2014 the shift is from using cognitive capacity to understand the inner life to actually engaging with it. Less analysis of why you feel things; more practice at just feeling them and seeing what happens."});
+  } else if (profileKey === 'engine') {
+    priorities.push({domain:'mind', priority:'Priority One', title:'Build Cognitive Depth', body:"The most available development for the Engine is the intellectual domain. This is not about formal education \u2014 it is about deliberate engagement with ideas. Reading that challenges your current thinking. Conversations that develop, not just confirm. Regular practice of sustained attention without distraction."});
+    priorities.push({domain:'inner', priority:'Priority Two', title:'Open the Inner Life', body:"The physical domain processes stress through movement \u2014 a real and valuable mechanism. The inner life asks you to also sit with what the stress is about. A 10-minute daily reflection practice \u2014 not goal-setting, not productivity review, but honest self-inquiry \u2014 is a concrete starting point."});
+    priorities.push({domain:'body', priority:'Maintain & Deepen', title:'Ensure Physical Purpose', body:"The physical development is real. The question to ask: is training serving your whole life, or has it become the arena where everything is managed? Physical practice should energise the other domains, not compensate for their absence."});
+  } else if (profileKey === 'strategist') {
+    priorities.push({domain:'body', priority:'Priority One', title:'Build the Physical Foundation', body:"The most direct upgrade available for the Strategist is physical. This is neurobiological as much as physical \u2014 aerobic exercise increases BDNF, the protein most directly responsible for the cognitive capacity you care about. The research is unusually consistent: cognitive performance improves predictably with physical fitness. Start with 3 sessions per week of 30\u201345 minutes of moderate-intensity exercise. Track sleep."});
+    priorities.push({domain:'inner', priority:'Priority Two', title:'Practice Emotional Literacy', body:"The inner life asks you to develop the same rigour you apply to intellectual problems to emotional experience. Begin with the body \u2014 emotions are felt before they are named. Learn to notice physical sensation first (tension, constriction, energy) before moving to interpretation."});
+    priorities.push({domain:'mind', priority:'Redirect', title:'From Consumption to Integration', body:"The mental domain is strong. The risk at this level is intellectual consumption without integration. Deliberately create space for integration: long walks without input, journalling that asks what you actually think rather than cataloguing what others think."});
+  } else if (profileKey === 'depth') {
+    priorities.push({domain:'body', priority:'Priority One', title:'Build Physical Discipline', body:"The inner-life-dominant person often understands the importance of physical development intellectually without having converted that understanding into practice. The specific gap is usually not knowledge \u2014 it is the translation from knowing to doing. Use implementation intentions: When your alarm goes off at 6.30am, put on your shoes and go to the gym. Specificity is the mechanism."});
+    priorities.push({domain:'mind', priority:'Priority Two', title:'Develop Cognitive Rigour', body:"Rich inner experience benefits enormously from cognitive structure. Journalling that asks why as well as what. Reading that introduces philosophical rigour to self-understanding. The distinction between emotional wisdom and analytical clarity \u2014 and the fact that you need both."});
+    priorities.push({domain:'inner', priority:'Deepen', title:'Ground the Inner Life', body:"The inner life is developed. The deepening work is ensuring it is grounded \u2014 connected to physical experience and structured by cognitive rigour. The risk for this profile is that inner work becomes self-referential. The purpose of inner development is to act better in the world, not just to understand yourself more fully."});
+  } else if (profileKey === 'scholar') {
+    priorities.push({domain:'body', priority:'Priority One', title:'The Platform Upgrade', body:"For the Scholar, physical development is not optional \u2014 it is the platform. The research is direct: BDNF from aerobic exercise improves the cognitive work you care about. Sleep, properly prioritised, is the single most impactful change available. Start with 3 sessions of 30\u201345 minutes of moderate-to-vigorous exercise per week."});
+    priorities.push({domain:'mind', priority:'Maintain', title:'Protect and Ground', body:"The cognitive and inner strengths are genuine. Protect them from the fragmentation that physical depletion produces. You will notice that your best thinking and your most stable emotional states correlate with your best physical weeks. This is the data you need."});
+    priorities.push({domain:'inner', priority:'Maintain', title:'Stay in Contact', body:"The inner life is a strength \u2014 maintain the practices that developed it. The risk for the Scholar is that physical neglect gradually erodes emotional stability, creating a slow deterioration that is easy to rationalise with cognitive explanations."});
+  } else if (profileKey === 'warrior') {
+    priorities.push({domain:'mind', priority:'Priority One', title:'Build Cognitive Precision', body:"The Grounded One has the strength and the depth. The missing piece is the mental discipline that aims both toward their highest use. Develop a reading practice \u2014 one book per month of genuine intellectual challenge. Practise the skill of structured thinking: when making a decision, write down the reasoning, not just the intuition. Notice where conviction is running ahead of evidence."});
+    priorities.push({domain:'body', priority:'Maintain', title:'Protect and Direct', body:"The physical domain is developed. The question is whether it is being directed \u2014 toward specific performance goals, health longevity, or mastery rather than just maintained as a general discipline."});
+    priorities.push({domain:'inner', priority:'Maintain', title:'Ground the Depth', body:"The inner life is genuine. Ensure it is connected to the cognitive rigour you are building \u2014 that insight is being tested against evidence, not just felt as conviction."});
+  } else if (profileKey === 'hollow') {
+    priorities.push({domain:'body', priority:'Start Here', title:'The Foundation First', body:"When all three domains are in deficit, the sequence matters. Begin with the physical \u2014 not because it is most important, but because it is most concrete, produces results fastest, and creates the physiological conditions that make progress in the other domains possible. Three sessions per week, 7\u20138 hours of sleep consistently, and reduce processed food."});
+    priorities.push({domain:'mind', priority:'Phase Two', title:'Reclaim Attention', body:"Once physical foundations are beginning to establish (4\u20136 weeks), begin deliberate attention training. A daily reading practice \u2014 even 20 minutes \u2014 of something genuinely challenging. One phone-free morning per week."});
+    priorities.push({domain:'inner', priority:'Phase Three', title:'One Honest Connection', body:"The inner life develops through relationship. The single most impactful step for this profile is one honest conversation per week \u2014 not a surface-level catch-up, but a conversation where you say something true about how you actually are."});
+  } else {
+    priorities.push({domain:'body', priority:'Deepen', title:'Find the Edge', body:"The physical domain is developed. The deepening work is finding the edge \u2014 what challenge hasn\u2019t been tried? What physical identity is waiting to be claimed? A new discipline, a competitive event, a physical practice that demands something genuinely new."});
+    priorities.push({domain:'mind', priority:'Deepen', title:'Intellectual Frontier', body:"Where is your thinking currently most comfortable? The deepening work for the Integrated mind is deliberately engaging with the domains of thought that are least familiar \u2014 the ideas that most disturb your current framework."});
+    priorities.push({domain:'inner', priority:'Deepen', title:'Relational Depth', body:"The inner life develops through relational challenge as much as through individual practice. Where can existing relationships go deeper? What genuine conversations are being avoided?"});
+  }
+
+  return priorities.map(function(p) {
+    return '<div class="pathway-card"><div class="pathway-card-domain ' + p.domain + '"></div><div class="pathway-card-priority">' + p.priority + '</div><div class="pathway-card-title">' + p.title + '</div><div class="pathway-card-body">' + p.body + '</div></div>';
+  }).join('');
+}
+
+/* ── ROUTING BUILDER ────────────────────────────────── */
+function buildRouting(profileKey, b, m, i) {
+  const routes = getRoutes(profileKey, b, m, i);
+  const cards = routes.map(r => `
+    <div class="routing-card">
+      <div class="routing-card-tag">${r.tag}</div>
+      <div class="routing-card-title">${r.title}</div>
+      <div class="routing-card-body">${r.body}</div>
+      ${r.available ? `<a href="#" class="routing-card-link">Learn more →</a>` : `<div class="routing-card-placeholder">${r.placeholder}</div>`}
+    </div>
+  `).join('');
+
+  return `
+    <div id="routing-wrapper" style="background:var(--forest);color:var(--cream);padding:64px 0 64px;margin:0 -40px;">
+      <div style="max-width:820px;margin:0 auto;padding:0 40px;">
+        <div class="routing-kicker">Based on Your Profile</div>
+        <div class="routing-title">Where to Go Next</div>
+        <div class="routing-sub">These are the products and pathways most relevant to your profile — matched to your specific pattern of development and deficit.</div>
+        <div class="routing-grid">${cards}</div>
+      </div>
+    </div>
+  `;
+}
+
+function getRoutes(profileKey, b, m, i) {
+  const routes = [];
+
+  // Physical deficit → Capable Human
+  if (b === 'deficit' || profileKey === 'hollow') {
+    routes.push({
+      tag: 'Physical Development',
+      title: 'The Capable Human',
+      body: 'A complete six-phase physical and lifestyle development system — from foundation to full expression. The structured physical pathway your assessment indicates is the priority.',
+      available: false,
+      placeholder: 'Available now — see website'
+    });
+  }
+
+  // Community / inner deficit
+  if (i === 'deficit' || profileKey === 'ironwall' || profileKey === 'engine') {
+    routes.push({
+      tag: 'Community & Brotherhood',
+      title: 'The High Performance Brotherhood',
+      body: 'Structured community built through shared challenge. For profiles where the inner life and relational domain are the development priority — the container in which this work can be done alongside others.',
+      available: false,
+      placeholder: 'Available — see website for current cohort'
+    });
+  }
+
+  // 1:1 coaching
+  if (profileKey === 'ironwall' || profileKey === 'hollow' || profileKey === 'strategist') {
+    routes.push({
+      tag: '1:1 Coaching',
+      title: 'Individual Coaching',
+      body: 'For profiles where the cross-domain imbalance requires personalised interpretation and challenge — where the pattern needs a coach’s eye as well as a framework to address it.',
+      available: false,
+      placeholder: 'Enquire via website — limited availability'
+    });
+  }
+
+  // Workshop
+  routes.push({
+    tag: 'Workshop',
+    title: 'The Two Failures Workshop',
+    body: 'A diagnostic workshop that uses the framework you’ve just completed as the starting point for group work on identifying and addressing your specific pattern. Available as a standalone event and in corporate formats.',
+    available: false,
+    placeholder: 'See upcoming dates — website'
+  });
+
+  // Athlete-specific placeholder
+  if (b === 'strength' && profileKey !== 'integrated') {
+    routes.push({
+      tag: 'Athlete Programme',
+      title: 'S&C + Performance Programme',
+      body: 'For athletes looking to build the mental and emotional domains alongside their existing physical development. Structured around your sport and training context.',
+      available: false,
+      placeholder: '⚑ Coming soon — athlete-specific programme in development'
+    });
+  }
+
+  // Corporate
+  if (profileKey === 'strategist' || profileKey === 'ironwall') {
+    routes.push({
+      tag: 'Corporate Programme',
+      title: 'Corporate Team Workshop',
+      body: 'The Three Strengths framework delivered to teams. Collective diagnostic — where is the team over-invested? Where is it collectively atrophied? For HR, L&D, and leadership teams.',
+      available: false,
+      placeholder: '⚑ Corporate programme — enquire via website'
+    });
+  }
+
+  // Retake note always
+  routes.push({
+    tag: 'Return',
+    title: 'Retake in 3–6 Months',
+    body: 'This framework is a snapshot. The domains shift as you develop — and what was a deficit can become a strength. Return to this assessment after a period of deliberate work to map your progress.',
+    available: false,
+    placeholder: 'Bookmark this page'
+  });
+
+  return routes;
+}
+
+/* ── UI HELPERS ─────────────────────────────────────── */
+function retake() {
+  document.getElementById('results-section').style.display = 'none';
+  document.getElementById('results-section').innerHTML = '';
+  document.querySelectorAll('input[type=radio]').forEach(r => r.checked = false);
+  document.querySelectorAll('.q-option label').forEach(l => { /* reset styles happen via CSS */ });
+  document.getElementById('btn-submit').disabled = true;
+  document.getElementById('assess-progress').style.width = '0%';
+  document.getElementById('assess-progress-label').textContent = '0 of 21 questions answered';
+  document.getElementById('incomplete-msg').style.display = 'none';
+  document.getElementById('assessment').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Track progress
+document.addEventListener('change', e => {
+  if (e.target.type === 'radio') {
+    const allNames = ['b1','b2','b3','b4','b5','b6','b7','m1','m2','m3','m4','m5','m6','m7','i1','i2','i3','i4','i5','i6','i7'];
+    const answered = allNames.filter(n => document.querySelector(`input[name="${n}"]:checked`)).length;
+    const pct = (answered / 21) * 100;
+    document.getElementById('assess-progress').style.width = pct + '%';
+    document.getElementById('assess-progress-label').textContent = `${answered} of 21 questions answered`;
+    document.getElementById('btn-submit').disabled = answered < 21;
+    if (answered === 21) document.getElementById('incomplete-msg').style.display = 'none';
+  }
+});
+
+// Reading progress
+window.addEventListener('scroll', () => {
+  const d = document.documentElement;
+  const pct = d.scrollTop / (d.scrollHeight - d.clientHeight) * 100;
+  document.getElementById('reading-progress').style.width = pct + '%';
+});
+
+// Reveal on scroll
+const revObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); revObs.unobserve(e.target); }
+  });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+</script>
+
+
+
+<!-- COACH PANEL -->
+<script>
+// THREE STRENGTHS — COACH PANEL
+// Password: wayofmovement2025
+// This script is injected after the main app script.
+
+(function() {
+'use strict';
+
+const COACH_PW = 'wayofmovement2025';
+
+// ── CSS ──────────────────────────────────────────────────
+const style = document.createElement('style');
+style.textContent = `
+  #coach-trigger {
+    position:fixed;bottom:28px;right:28px;z-index:9000;
+    width:44px;height:44px;border-radius:50%;border:none;
+    background:rgba(30,61,47,0.9);color:#d4a017;font-size:18px;
+    cursor:pointer;box-shadow:0 2px 14px rgba(0,0,0,0.35);
+    display:flex;align-items:center;justify-content:center;
+    transition:background 0.2s;backdrop-filter:blur(4px);
+    font-family:sans-serif;
+  }
+  #coach-trigger:hover { background:#1e3d2f; }
+
+  #coach-login-overlay {
+    display:none;position:fixed;inset:0;z-index:9100;
+    background:rgba(15,14,12,0.88);backdrop-filter:blur(6px);
+    align-items:center;justify-content:center;
+  }
+  #coach-login-overlay.open { display:flex; }
+
+  #coach-login-box {
+    background:#f7f3ec;padding:40px 48px;max-width:360px;
+    width:90%;position:relative;
+  }
+  #coach-login-kicker {
+    font-size:9px;letter-spacing:0.28em;text-transform:uppercase;
+    font-weight:700;color:#1e3d2f;margin-bottom:10px;
+    font-family:'Lato',sans-serif;
+  }
+  #coach-login-title {
+    font-family:'Playfair Display',serif;font-size:24px;
+    font-weight:700;color:#1a1a14;margin-bottom:24px;
+  }
+  #coach-pw-input {
+    width:100%;border:none;border-bottom:2px solid rgba(0,0,0,0.15);
+    background:transparent;padding:10px 0;font-family:'Lato',sans-serif;
+    font-size:16px;color:#1a1a14;margin-bottom:20px;outline:none;
+    display:block;box-sizing:border-box;
+  }
+  #coach-pw-err {
+    color:#8b1a1a;font-size:12px;margin-bottom:12px;
+    display:none;font-style:italic;font-family:'Lato',sans-serif;
+  }
+  #coach-login-btn {
+    background:#1e3d2f;color:#d4a017;border:none;padding:13px 28px;
+    font-family:'Lato',sans-serif;font-size:11px;font-weight:700;
+    letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;
+    width:100%;
+  }
+  #coach-login-close {
+    position:absolute;top:14px;right:16px;background:none;border:none;
+    font-size:22px;cursor:pointer;color:rgba(0,0,0,0.3);line-height:1;
+  }
+
+  #coach-main {
+    display:none;position:fixed;inset:0;z-index:9200;
+    background:#f7f3ec;overflow-y:auto;font-family:'Lato',sans-serif;
+  }
+  #coach-main.open { display:block; }
+
+  .coach-topbar {
+    background:#1e3d2f;color:#f7f3ec;padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+    position:sticky;top:0;z-index:10;
+    box-shadow:0 2px 12px rgba(0,0,0,0.25);
+  }
+  .coach-topbar-title {
+    font-family:'Playfair Display',serif;font-size:20px;font-weight:700;
+  }
+  .coach-topbar-sub {
+    font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+    color:rgba(247,243,236,0.35);margin-left:18px;
+  }
+  .coach-topbar-actions { display:flex;gap:10px;align-items:center; }
+  #coach-save-status {
+    font-size:11px;font-style:italic;color:#d4a017;margin-right:8px;
+  }
+  .coach-btn-export {
+    background:#b8860b;color:#1a1a14;border:none;padding:9px 20px;
+    font-size:10px;font-weight:700;letter-spacing:0.1em;
+    text-transform:uppercase;cursor:pointer;
+  }
+  .coach-btn-close {
+    background:rgba(247,243,236,0.1);color:#f7f3ec;border:none;
+    padding:9px 18px;font-size:10px;font-weight:700;
+    letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;
+  }
+
+  .coach-subnav {
+    background:#162f24;display:flex;overflow-x:auto;
+    border-bottom:1px solid rgba(247,243,236,0.08);
+  }
+  .coach-subnav-btn {
+    padding:13px 22px;background:none;border:none;
+    border-bottom:3px solid transparent;
+    color:rgba(247,243,236,0.4);font-family:'Lato',sans-serif;
+    font-size:10px;font-weight:700;letter-spacing:0.14em;
+    text-transform:uppercase;cursor:pointer;white-space:nowrap;
+    transition:color 0.15s;
+  }
+  .coach-subnav-btn:hover { color:rgba(247,243,236,0.75); }
+  .coach-subnav-btn.active {
+    color:#f7f3ec;border-bottom-color:#d4a017;
+  }
+
+  .coach-tab { display:none;padding:36px;max-width:900px;margin:0 auto; }
+  .coach-tab.active { display:block; }
+
+  .coach-tab-title {
+    font-family:'Playfair Display',serif;font-size:26px;
+    font-weight:700;margin-bottom:8px;color:#1a1a14;
+  }
+  .coach-tab-desc {
+    font-size:13px;color:#7a7a68;margin-bottom:32px;line-height:1.65;
+  }
+  .coach-tab-desc strong { color:#1a1a14; }
+
+  .coach-notice {
+    background:#fff3cd;border-left:3px solid #b8860b;
+    padding:12px 18px;margin-bottom:28px;
+    font-size:12.5px;color:#5a4a00;line-height:1.55;
+  }
+
+  .coach-section-head {
+    font-family:'Playfair Display',serif;font-size:16px;font-weight:700;
+    color:#1e3d2f;margin:32px 0 16px;padding-bottom:8px;
+    border-bottom:2px solid #1e3d2f;
+  }
+
+  .coach-accordion {
+    border:1px solid rgba(0,0,0,0.08);margin-bottom:16px;
+    background:#fff;overflow:hidden;
+  }
+  .coach-acc-header {
+    padding:14px 20px;background:#f0ebe0;
+    border-bottom:1px solid rgba(0,0,0,0.06);
+    display:flex;justify-content:space-between;align-items:center;
+    cursor:pointer;user-select:none;
+  }
+  .coach-acc-header:hover { background:#e8e0d0; }
+  .coach-acc-title { font-size:13.5px;font-weight:700;color:#1a1a14; }
+  .coach-acc-sub { font-size:11px;color:#7a7a68;font-style:italic;margin-top:2px; }
+  .coach-acc-toggle {
+    font-size:20px;color:#b8860b;transition:transform 0.2s;flex-shrink:0;
+  }
+  .coach-acc-header.open .coach-acc-toggle { transform:rotate(45deg); }
+  .coach-acc-body { display:none;padding:20px 24px; }
+  .coach-acc-body.open { display:block; }
+
+  .coach-label {
+    display:block;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;
+    font-weight:700;color:#7a7a68;margin-bottom:6px;margin-top:18px;
+  }
+  .coach-label:first-child { margin-top:0; }
+  .coach-label span { text-transform:none;letter-spacing:0;font-weight:400; }
+
+  .coach-input {
+    width:100%;border:1px solid rgba(0,0,0,0.12);padding:10px 14px;
+    font-family:'Lato',sans-serif;font-size:14px;color:#1a1a14;
+    background:#fafaf7;resize:vertical;line-height:1.6;
+    box-sizing:border-box;
+  }
+  .coach-input:focus { outline:none;border-color:#1e3d2f; }
+  .coach-input-sm { min-height:42px;resize:none; }
+  .coach-input-md { min-height:100px; }
+  .coach-input-lg { min-height:180px; }
+  .coach-input-xl { min-height:240px; }
+  .coach-char { font-size:10px;color:#bbb;text-align:right;margin-top:3px; }
+
+  .coach-preview-btn {
+    background:#1e3d2f;color:#d4a017;border:none;padding:9px 22px;
+    font-family:'Lato',sans-serif;font-size:10px;font-weight:700;
+    letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;
+    margin-top:16px;
+  }
+  .coach-preview-box {
+    background:#1e3d2f;color:#f7f3ec;padding:20px 24px;
+    margin-top:14px;border-left:4px solid #b8860b;display:none;
+  }
+  .coach-preview-box p {
+    font-family:'Playfair Display',serif;font-size:15px;
+    line-height:1.75;margin-bottom:10px;
+  }
+  .coach-preview-box p:last-child { margin-bottom:0; }
+
+  .coach-card-inner {
+    border:1px solid rgba(0,0,0,0.07);padding:16px;
+    margin-bottom:12px;background:#fafaf7;
+  }
+  .coach-card-inner-label {
+    font-size:9.5px;font-weight:700;letter-spacing:0.1em;
+    text-transform:uppercase;color:#7a7a68;margin-bottom:10px;
+  }
+
+  .coach-toggle-row { display:flex;align-items:center;gap:12px;margin:12px 0; }
+  .coach-toggle { position:relative;width:40px;height:22px;flex-shrink:0; }
+  .coach-toggle input { opacity:0;width:0;height:0; }
+  .coach-slider {
+    position:absolute;inset:0;background:#ccc;border-radius:22px;
+    cursor:pointer;transition:0.2s;
+  }
+  .coach-slider:before {
+    content:'';position:absolute;height:16px;width:16px;
+    left:3px;bottom:3px;background:white;border-radius:50%;transition:0.2s;
+  }
+  .coach-toggle input:checked + .coach-slider { background:#1e3d2f; }
+  .coach-toggle input:checked + .coach-slider:before { transform:translateX(18px); }
+  .coach-toggle-label { font-size:12.5px;color:#1a1a14;font-weight:600; }
+
+  .coach-q-row {
+    background:#fff;border:1px solid rgba(0,0,0,0.08);
+    padding:16px 20px;margin-bottom:10px;
+    display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start;
+  }
+  .coach-q-num {
+    font-family:'Playfair Display',serif;font-size:28px;
+    color:rgba(0,0,0,0.1);font-weight:700;line-height:1;
+  }
+  .coach-q-text { font-size:14px;line-height:1.6;color:#1a1a14;margin-bottom:4px; }
+  .coach-q-meta { font-size:10px;color:#bbb;font-style:italic; }
+
+  .coach-score-grid {
+    display:grid;grid-template-columns:180px 90px 80px 1fr;
+    gap:12px;align-items:center;padding:10px 0;
+    border-bottom:1px solid rgba(0,0,0,0.06);
+  }
+  .coach-score-grid:first-child {
+    font-size:9px;font-weight:700;letter-spacing:0.1em;
+    text-transform:uppercase;color:#7a7a68;padding-bottom:8px;
+  }
+  .coach-score-label { font-size:13px;font-weight:600;color:#1a1a14; }
+  .coach-score-input {
+    border:1px solid rgba(0,0,0,0.12);padding:6px 8px;
+    font-size:13px;text-align:center;width:100%;
+    font-family:'Lato',sans-serif;
+  }
+  .coach-score-input:focus { outline:none;border-color:#1e3d2f; }
+  .coach-score-note { font-size:11.5px;color:#7a7a68;font-style:italic; }
+
+  .coach-logic-grid {
+    display:grid;grid-template-columns:160px 180px 1fr;
+    gap:1px;background:rgba(0,0,0,0.08);margin-top:16px;
+  }
+  .coach-logic-cell {
+    background:#fff;padding:8px 14px;font-size:12px;color:#1a1a14;
+  }
+  .coach-logic-cell.head {
+    background:#f0ebe0;font-size:9px;font-weight:700;
+    letter-spacing:0.1em;text-transform:uppercase;color:#7a7a68;
+  }
+  .coach-logic-cell.result { font-weight:700;color:#1e3d2f; }
+`;
+document.head.appendChild(style);
+
+// ── DOM STRUCTURE ────────────────────────────────────────
+const html = `
+<button id="coach-trigger" title="Coach Panel">⚙</button>
+
+<div id="coach-login-overlay">
+  <div id="coach-login-box">
+    <div id="coach-login-kicker">Coach Access</div>
+    <div id="coach-login-title">Enter Passphrase</div>
+    <input id="coach-pw-input" type="password" placeholder="Passphrase">
+    <div id="coach-pw-err">Incorrect passphrase.</div>
+    <button id="coach-login-btn">Enter →</button>
+    <button id="coach-login-close">✕</button>
+  </div>
+</div>
+
+<div id="coach-main">
+  <div class="coach-topbar">
+    <div style="display:flex;align-items:center;">
+      <span class="coach-topbar-title">Coach Panel</span>
+      <span class="coach-topbar-sub">Three Strengths Framework</span>
+    </div>
+    <div class="coach-topbar-actions">
+      <span id="coach-save-status"></span>
+      <button class="coach-btn-export" id="coach-export-btn">⬇ Export HTML</button>
+      <button class="coach-btn-close" id="coach-close-btn">✕ Close</button>
+    </div>
+  </div>
+
+  <div class="coach-subnav">
+    <button class="coach-subnav-btn active" data-tab="profiles">Profiles</button>
+    <button class="coach-subnav-btn" data-tab="domains">Domain Analysis</button>
+    <button class="coach-subnav-btn" data-tab="pathways">Development Pathways</button>
+    <button class="coach-subnav-btn" data-tab="routing">Product Routing</button>
+    <button class="coach-subnav-btn" data-tab="questions">Questions</button>
+    <button class="coach-subnav-btn" data-tab="scores">Score Logic</button>
+  </div>
+
+  <div id="coach-tab-profiles" class="coach-tab active">
+    <div class="coach-tab-title">Profile Descriptions</div>
+    <p class="coach-tab-desc">Eight profiles. Each has a name, subtitle, main description (supports <strong>&lt;strong&gt;</strong> for bold), and an imbalance analysis. Changes take effect in memory immediately — use Export to save permanently.</p>
+    <div id="profiles-editor"></div>
+  </div>
+
+  <div id="coach-tab-domains" class="coach-tab">
+    <div class="coach-tab-title">Domain Analysis Text</div>
+    <p class="coach-tab-desc">The interpretation paragraph shown under each domain score in results. Each entry is specific to a domain + status + profile combination. Plain text only — no HTML tags needed.</p>
+    <div id="domains-editor"></div>
+  </div>
+
+  <div id="coach-tab-pathways" class="coach-tab">
+    <div class="coach-tab-title">Development Pathways</div>
+    <p class="coach-tab-desc">The three pathway cards shown at the bottom of each profile result. Each card has a domain, priority label, title, and body text.</p>
+    <div id="pathways-editor"></div>
+  </div>
+
+  <div id="coach-tab-routing" class="coach-tab">
+    <div class="coach-tab-title">Product Routing</div>
+    <p class="coach-tab-desc">Recommendation cards at the bottom of results. Toggle a product live when it is ready — the placeholder text becomes a link.</p>
+    <div id="routing-editor"></div>
+  </div>
+
+  <div id="coach-tab-questions" class="coach-tab">
+    <div class="coach-tab-title">Assessment Questions</div>
+    <p class="coach-tab-desc">All 21 questions for reference. Question IDs (b1–b7, m1–m7, i1–i7) correspond to the radio input names in the HTML.</p>
+    <div class="coach-notice"><strong>Note:</strong> Editing question wording requires updating the HTML directly. Use Export and edit the question text in the exported file — search by the question ID (e.g. name="b2").</div>
+    <div id="questions-viewer"></div>
+  </div>
+
+  <div id="coach-tab-scores" class="coach-tab">
+    <div class="coach-tab-title">Score Logic</div>
+    <p class="coach-tab-desc">Scoring thresholds and profile assignment rules. Adjust with care — shifting thresholds affects all profile outputs.</p>
+    <div id="scores-editor"></div>
+  </div>
+</div>
+`;
+
+document.body.insertAdjacentHTML('beforeend', html);
+
+// ── EVENT LISTENERS ──────────────────────────────────────
+document.getElementById('coach-trigger').addEventListener('click', openLogin);
+document.getElementById('coach-login-close').addEventListener('click', closeLogin);
+document.getElementById('coach-login-btn').addEventListener('click', checkPw);
+document.getElementById('coach-pw-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkPw();
+});
+document.getElementById('coach-close-btn').addEventListener('click', closePanel);
+document.getElementById('coach-export-btn').addEventListener('click', exportHTML);
+
+document.querySelectorAll('.coach-subnav-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.coach-subnav-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.querySelectorAll('.coach-tab').forEach(function(t) { t.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById('coach-tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ── AUTH ─────────────────────────────────────────────────
+function openLogin() {
+  document.getElementById('coach-login-overlay').classList.add('open');
+  setTimeout(function() { document.getElementById('coach-pw-input').focus(); }, 80);
+}
+function closeLogin() {
+  document.getElementById('coach-login-overlay').classList.remove('open');
+  document.getElementById('coach-pw-input').value = '';
+  document.getElementById('coach-pw-err').style.display = 'none';
+}
+function checkPw() {
+  var pw = document.getElementById('coach-pw-input').value;
+  if (pw === COACH_PW) {
+    closeLogin();
+    openPanel();
+  } else {
+    document.getElementById('coach-pw-err').style.display = 'block';
+    document.getElementById('coach-pw-input').value = '';
+    document.getElementById('coach-pw-input').focus();
+  }
+}
+function openPanel() {
+  document.getElementById('coach-main').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  buildAllEditors();
+}
+function closePanel() {
+  document.getElementById('coach-main').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── UTILITIES ────────────────────────────────────────────
+function esc(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+function setSave(msg, color) {
+  var el = document.getElementById('coach-save-status');
+  el.textContent = msg;
+  el.style.color = color || '#d4a017';
+  if (color === 'green') setTimeout(function() { el.textContent = ''; }, 3000);
+}
+function makeCharCounter(textarea, counterEl) {
+  function update() { counterEl.textContent = textarea.value.length + ' characters'; }
+  textarea.addEventListener('input', update);
+  update();
+}
+function makeAccordion(headerEl) {
+  headerEl.addEventListener('click', function() {
+    headerEl.classList.toggle('open');
+    headerEl.nextElementSibling.classList.toggle('open');
+  });
+}
+
+// ── PROFILES EDITOR ──────────────────────────────────────
+var PROFILE_DISPLAY = {
+  engine: 'The Engine', strategist: 'The Strategist', depth: 'The Depth',
+  ironwall: 'The Iron Wall', scholar: 'The Scholar', warrior: 'The Grounded One',
+  hollow: 'The Hollow Achiever', integrated: 'The Integrated'
+};
+
+function buildAllEditors() {
+  buildProfilesEditor();
+  buildDomainsEditor();
+  buildPathwaysEditor();
+  buildRoutingEditor();
+  buildQuestionsViewer();
+  buildScoresEditor();
+}
+
+function buildProfilesEditor() {
+  var container = document.getElementById('profiles-editor');
+  container.innerHTML = '';
+  Object.keys(PROFILES).forEach(function(key) {
+    var p = PROFILES[key];
+    var wrap = document.createElement('div');
+    wrap.className = 'coach-accordion';
+
+    var header = document.createElement('div');
+    header.className = 'coach-acc-header';
+    header.innerHTML = '<div><div class="coach-acc-title">' + esc(p.name) + '</div><div class="coach-acc-sub">' + esc(p.subtitle) + '</div></div><div class="coach-acc-toggle">+</div>';
+    makeAccordion(header);
+
+    var body = document.createElement('div');
+    body.className = 'coach-acc-body';
+
+    // Name
+    var lName = document.createElement('span'); lName.className = 'coach-label'; lName.textContent = 'Profile Name';
+    var iName = document.createElement('textarea'); iName.className = 'coach-input coach-input-sm'; iName.value = p.name;
+    iName.addEventListener('input', function() { PROFILES[key].name = iName.value; setSave('Unsaved changes'); });
+
+    // Subtitle
+    var lSub = document.createElement('span'); lSub.className = 'coach-label'; lSub.textContent = 'Subtitle / Tagline';
+    var iSub = document.createElement('textarea'); iSub.className = 'coach-input coach-input-sm'; iSub.value = p.subtitle;
+    iSub.addEventListener('input', function() { PROFILES[key].subtitle = iSub.value; setSave('Unsaved changes'); });
+
+    // Description
+    var lDesc = document.createElement('span'); lDesc.className = 'coach-label';
+    lDesc.innerHTML = 'Main Description <span>(shown in profile card — &lt;strong&gt; supported)</span>';
+    var iDesc = document.createElement('textarea'); iDesc.className = 'coach-input coach-input-xl'; iDesc.value = p.description;
+    iDesc.addEventListener('input', function() { PROFILES[key].description = iDesc.value; setSave('Unsaved changes'); });
+    var cDesc = document.createElement('div'); cDesc.className = 'coach-char';
+    makeCharCounter(iDesc, cDesc);
+
+    // Imbalance
+    var lImb = document.createElement('span'); lImb.className = 'coach-label';
+    lImb.innerHTML = 'Cross-Domain Imbalance Analysis <span>(alert box below the profile card)</span>';
+    var iImb = document.createElement('textarea'); iImb.className = 'coach-input coach-input-md'; iImb.value = p.imbalance;
+    iImb.addEventListener('input', function() { PROFILES[key].imbalance = iImb.value; setSave('Unsaved changes'); });
+
+    // Preview
+    var prevBtn = document.createElement('button'); prevBtn.className = 'coach-preview-btn'; prevBtn.textContent = 'Preview Profile Card';
+    var prevBox = document.createElement('div'); prevBox.className = 'coach-preview-box';
+    prevBtn.addEventListener('click', function() {
+      prevBox.style.display = prevBox.style.display === 'block' ? 'none' : 'block';
+      var paras = PROFILES[key].description.split('\n\n').map(function(t) { return '<p>' + t + '</p>'; }).join('');
+      prevBox.innerHTML = '<p style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#d4a017;margin-bottom:6px;">PREVIEW</p><p style="font-size:20px;font-weight:700;margin-bottom:8px;">' + esc(PROFILES[key].name) + '</p>' + paras;
+    });
+
+    [lName, iName, lSub, iSub, lDesc, iDesc, cDesc, lImb, iImb, prevBtn, prevBox].forEach(function(el) { body.appendChild(el); });
+    wrap.appendChild(header);
+    wrap.appendChild(body);
+    container.appendChild(wrap);
+  });
+}
+
+// ── DOMAIN ANALYSIS EDITOR ───────────────────────────────
+// Override storage: key = "domain|status|profile"
+window._domainOverrides = {};
+
+// Patch getDomainAnalysis to check overrides
+var _origDA = window.getDomainAnalysis;
+window.getDomainAnalysis = function(domain, score, status, profileKey) {
+  var k1 = domain + '|' + status + '|' + profileKey;
+  var k2 = domain + '|' + status + '|default';
+  if (window._domainOverrides[k1] !== undefined) return '<p>' + window._domainOverrides[k1] + '</p>';
+  if (window._domainOverrides[k2] !== undefined) return '<p>' + window._domainOverrides[k2] + '</p>';
+  return _origDA(domain, score, status, profileKey);
+};
+
+var DA_ENTRIES = [
+  // BODY
+  {label:'Body — Strength (Iron Wall / Engine)', sub:'Used for physical dominant profiles', domain:'body', status:'strength', profile:'ironwall', sampleScore:32, sampleProfile:'ironwall'},
+  {label:'Body — Strength (Warrior)', sub:'Body + Inner Life dominant', domain:'body', status:'strength', profile:'warrior', sampleScore:32, sampleProfile:'warrior'},
+  {label:'Body — Strength (General)', sub:'All other strong-body profiles', domain:'body', status:'strength', profile:'default', sampleScore:32, sampleProfile:'integrated'},
+  {label:'Body — Over-invested', sub:'High body scores alongside deficits elsewhere', domain:'body', status:'overdeveloped', profile:'default', sampleScore:32, sampleProfile:'engine'},
+  {label:'Body — Developing', sub:'Inconsistent practice, present but not systematic', domain:'body', status:'developing', profile:'default', sampleScore:22, sampleProfile:'hollow'},
+  {label:'Body — Deficit (Strategist)', sub:'Mind dominant, body low', domain:'body', status:'deficit', profile:'strategist', sampleScore:12, sampleProfile:'strategist'},
+  {label:'Body — Deficit (Scholar)', sub:'Mind + Inner strong, body low', domain:'body', status:'deficit', profile:'scholar', sampleScore:12, sampleProfile:'scholar'},
+  {label:'Body — Deficit (General)', sub:'All other body deficit profiles', domain:'body', status:'deficit', profile:'default', sampleScore:12, sampleProfile:'hollow'},
+  // MIND
+  {label:'Mind — Strength (Strategist / Iron Wall)', sub:'Mind dominant profiles', domain:'mind', status:'strength', profile:'strategist', sampleScore:32, sampleProfile:'strategist'},
+  {label:'Mind — Strength (Scholar)', sub:'Mind + Inner Life', domain:'mind', status:'strength', profile:'scholar', sampleScore:32, sampleProfile:'scholar'},
+  {label:'Mind — Strength (General)', sub:'All other strong-mind profiles', domain:'mind', status:'strength', profile:'default', sampleScore:32, sampleProfile:'integrated'},
+  {label:'Mind — Over-invested', sub:'High mind scores, deficits elsewhere', domain:'mind', status:'overdeveloped', profile:'default', sampleScore:32, sampleProfile:'strategist'},
+  {label:'Mind — Developing', sub:'Fragmented attention, inconsistent rigour', domain:'mind', status:'developing', profile:'default', sampleScore:22, sampleProfile:'hollow'},
+  {label:'Mind — Deficit', sub:'All mind deficit profiles', domain:'mind', status:'deficit', profile:'default', sampleScore:12, sampleProfile:'warrior'},
+  // INNER LIFE
+  {label:'Inner Life — Strength (Depth)', sub:'Inner life dominant profile', domain:'inner', status:'strength', profile:'depth', sampleScore:32, sampleProfile:'depth'},
+  {label:'Inner Life — Strength (Scholar)', sub:'Mind + Inner Life', domain:'inner', status:'strength', profile:'scholar', sampleScore:32, sampleProfile:'scholar'},
+  {label:'Inner Life — Strength (General)', sub:'Other strong inner life profiles', domain:'inner', status:'strength', profile:'default', sampleScore:32, sampleProfile:'integrated'},
+  {label:'Inner Life — Over-invested', sub:'High inner, deficits elsewhere', domain:'inner', status:'overdeveloped', profile:'default', sampleScore:32, sampleProfile:'depth'},
+  {label:'Inner Life — Developing', sub:'Surface emotional awareness, gaps in depth', domain:'inner', status:'developing', profile:'default', sampleScore:22, sampleProfile:'hollow'},
+  {label:'Inner Life — Deficit (Engine)', sub:'Body dominant, inner life low', domain:'inner', status:'deficit', profile:'engine', sampleScore:12, sampleProfile:'engine'},
+  {label:'Inner Life — Deficit (Iron Wall)', sub:'Body + Mind, inner life low', domain:'inner', status:'deficit', profile:'ironwall', sampleScore:12, sampleProfile:'ironwall'},
+  {label:'Inner Life — Deficit (General)', sub:'All other inner life deficit profiles', domain:'inner', status:'deficit', profile:'default', sampleScore:12, sampleProfile:'hollow'},
+];
+
+var DA_COLORS = {body:'#2d4a1e', mind:'#1e2d4a', inner:'#4a1e3d'};
+var DA_DOMAIN_NAMES = {body:'The Body', mind:'The Mind', inner:'The Inner Life'};
+
+function buildDomainsEditor() {
+  var container = document.getElementById('domains-editor');
+  container.innerHTML = '';
+
+  ['body','mind','inner'].forEach(function(domain) {
+    var sHead = document.createElement('div');
+    sHead.className = 'coach-section-head';
+    sHead.style.color = DA_COLORS[domain];
+    sHead.style.borderColor = DA_COLORS[domain];
+    sHead.textContent = DA_DOMAIN_NAMES[domain];
+    container.appendChild(sHead);
+
+    DA_ENTRIES.filter(function(e) { return e.domain === domain; }).forEach(function(entry) {
+      var oKey = entry.domain + '|' + entry.status + '|' + entry.profile;
+
+      // Get current text from original function
+      var rawHtml = _origDA(entry.domain, entry.sampleScore, entry.status, entry.sampleProfile);
+      var currentText = (window._domainOverrides[oKey] !== undefined)
+        ? window._domainOverrides[oKey]
+        : rawHtml.replace(/<[^>]+>/g, '').trim();
+
+      var wrap = document.createElement('div');
+      wrap.className = 'coach-accordion';
+
+      var header = document.createElement('div');
+      header.className = 'coach-acc-header';
+      header.innerHTML = '<div><div class="coach-acc-title">' + esc(entry.label) + '</div><div class="coach-acc-sub">' + esc(entry.sub) + '</div></div><div class="coach-acc-toggle">+</div>';
+      makeAccordion(header);
+
+      var body = document.createElement('div');
+      body.className = 'coach-acc-body';
+
+      var lbl = document.createElement('span'); lbl.className = 'coach-label';
+      lbl.innerHTML = 'Analysis text <span>(plain text, no HTML needed)</span>';
+      var ta = document.createElement('textarea');
+      ta.className = 'coach-input coach-input-lg';
+      ta.value = currentText;
+      (function(k, textarea) {
+        textarea.addEventListener('input', function() {
+          window._domainOverrides[k] = textarea.value;
+          setSave('Unsaved changes');
+        });
+      })(oKey, ta);
+      var cc = document.createElement('div'); cc.className = 'coach-char';
+      makeCharCounter(ta, cc);
+
+      body.appendChild(lbl); body.appendChild(ta); body.appendChild(cc);
+      wrap.appendChild(header); wrap.appendChild(body);
+      container.appendChild(wrap);
+    });
+  });
+}
+
+// ── PATHWAYS EDITOR ──────────────────────────────────────
+window._pathwayOverrides = {};
+
+var _origBP = window.buildPathways;
+window.buildPathways = function(profileKey, b, m, i) {
+  if (window._pathwayOverrides[profileKey]) {
+    return window._pathwayOverrides[profileKey].map(function(p) {
+      return '<div class="pathway-card"><div class="pathway-card-domain ' + p.domain + '"></div><div class="pathway-card-priority">' + esc(p.priority) + '</div><div class="pathway-card-title">' + esc(p.title) + '</div><div class="pathway-card-body">' + esc(p.body) + '</div></div>';
+    }).join('');
+  }
+  return _origBP(profileKey, b, m, i);
+};
+
+function parsePathwayCards(profileKey) {
+  if (window._pathwayOverrides[profileKey]) return window._pathwayOverrides[profileKey];
+  var html = _origBP(profileKey, 'strength', 'strength', 'deficit');
+  var div = document.createElement('div');
+  div.innerHTML = html;
+  return Array.from(div.querySelectorAll('.pathway-card')).map(function(card) {
+    var domainEl = card.querySelector('.pathway-card-domain');
+    var domainClass = 'body';
+    if (domainEl) {
+      if (domainEl.classList.contains('mind')) domainClass = 'mind';
+      else if (domainEl.classList.contains('inner')) domainClass = 'inner';
+    }
+    return {
+      domain: domainClass,
+      priority: (card.querySelector('.pathway-card-priority') || {}).textContent || '',
+      title: (card.querySelector('.pathway-card-title') || {}).textContent || '',
+      body: (card.querySelector('.pathway-card-body') || {}).textContent || ''
+    };
+  });
+}
+
+function buildPathwaysEditor() {
+  var container = document.getElementById('pathways-editor');
+  container.innerHTML = '';
+  Object.keys(PROFILE_DISPLAY).forEach(function(profileKey) {
+    var cards = parsePathwayCards(profileKey);
+    var wrap = document.createElement('div');
+    wrap.className = 'coach-accordion';
+    var header = document.createElement('div');
+    header.className = 'coach-acc-header';
+    header.innerHTML = '<div><div class="coach-acc-title">' + PROFILE_DISPLAY[profileKey] + '</div><div class="coach-acc-sub">' + cards.length + ' pathway cards</div></div><div class="coach-acc-toggle">+</div>';
+    makeAccordion(header);
+    var body = document.createElement('div');
+    body.className = 'coach-acc-body';
+
+    cards.forEach(function(card, i) {
+      var cardDiv = document.createElement('div');
+      cardDiv.className = 'coach-card-inner';
+
+      var domainColors2 = {body:'#2d4a1e', mind:'#1e2d4a', inner:'#4a1e3d'};
+      var clabel = document.createElement('div'); clabel.className = 'coach-card-inner-label';
+      clabel.innerHTML = 'Card ' + (i+1) + ' <span style="color:' + (domainColors2[card.domain]||'#666') + ';font-weight:700;">' + card.domain.toUpperCase() + '</span>';
+
+      var lPriority = document.createElement('span'); lPriority.className = 'coach-label'; lPriority.textContent = 'Priority Label';
+      var iPriority = document.createElement('textarea'); iPriority.className = 'coach-input coach-input-sm'; iPriority.value = card.priority;
+
+      var lTitle = document.createElement('span'); lTitle.className = 'coach-label'; lTitle.textContent = 'Title';
+      var iTitle = document.createElement('textarea'); iTitle.className = 'coach-input coach-input-sm'; iTitle.value = card.title;
+
+      var lBody = document.createElement('span'); lBody.className = 'coach-label'; lBody.textContent = 'Body Text';
+      var iBody = document.createElement('textarea'); iBody.className = 'coach-input coach-input-md'; iBody.value = card.body;
+
+      (function(pk, idx, tPriority, tTitle, tBody) {
+        function sync() {
+          if (!window._pathwayOverrides[pk]) window._pathwayOverrides[pk] = parsePathwayCards(pk).map(function(c) { return Object.assign({}, c); });
+          window._pathwayOverrides[pk][idx].priority = tPriority.value;
+          window._pathwayOverrides[pk][idx].title = tTitle.value;
+          window._pathwayOverrides[pk][idx].body = tBody.value;
+          setSave('Unsaved changes');
+        }
+        tPriority.addEventListener('input', sync);
+        tTitle.addEventListener('input', sync);
+        tBody.addEventListener('input', sync);
+      })(profileKey, i, iPriority, iTitle, iBody);
+
+      [clabel, lPriority, iPriority, lTitle, iTitle, lBody, iBody].forEach(function(el) { cardDiv.appendChild(el); });
+      body.appendChild(cardDiv);
+    });
+
+    wrap.appendChild(header); wrap.appendChild(body);
+    container.appendChild(wrap);
+  });
+}
+
+// ── ROUTING EDITOR ───────────────────────────────────────
+window._routingOverrides = {};
+
+var _origGR = window.getRoutes;
+window.getRoutes = function(profileKey, b, m, i) {
+  var routes = _origGR(profileKey, b, m, i);
+  return routes.map(function(route) {
+    var k = 'route|' + route.title;
+    if (window._routingOverrides[k]) return Object.assign({}, route, window._routingOverrides[k]);
+    return route;
+  });
+};
+
+function getAllUniqueRoutes() {
+  var seen = new Set();
+  var all = [];
+  Object.keys(PROFILES).forEach(function(key) {
+    _origGR(key, 'deficit', 'strength', 'deficit').forEach(function(r) {
+      if (!seen.has(r.title)) { seen.add(r.title); all.push(r); }
+    });
+  });
+  return all;
+}
+
+function buildRoutingEditor() {
+  var container = document.getElementById('routing-editor');
+  container.innerHTML = '';
+  var routes = getAllUniqueRoutes();
+  routes.forEach(function(route) {
+    var rk = 'route|' + route.title;
+    var current = Object.assign({}, route, window._routingOverrides[rk] || {});
+    var wrap = document.createElement('div');
+    wrap.className = 'coach-accordion';
+    var header = document.createElement('div');
+    header.className = 'coach-acc-header';
+    header.innerHTML = '<div><div class="coach-acc-title">' + esc(route.title) + '</div><div class="coach-acc-sub">' + esc(route.tag) + (current.available ? ' · <span style="color:#1e3d2f;font-weight:700;">LIVE</span>' : ' · Placeholder') + '</div></div><div class="coach-acc-toggle">+</div>';
+    makeAccordion(header);
+    var body = document.createElement('div');
+    body.className = 'coach-acc-body';
+
+    var lTag = document.createElement('span'); lTag.className = 'coach-label'; lTag.textContent = 'Tag / Category';
+    var iTag = document.createElement('textarea'); iTag.className = 'coach-input coach-input-sm'; iTag.value = current.tag || '';
+
+    var lTitle2 = document.createElement('span'); lTitle2.className = 'coach-label'; lTitle2.textContent = 'Card Title';
+    var iTitle2 = document.createElement('textarea'); iTitle2.className = 'coach-input coach-input-sm'; iTitle2.value = current.title || '';
+
+    var lDesc = document.createElement('span'); lDesc.className = 'coach-label'; lDesc.textContent = 'Description';
+    var iDesc = document.createElement('textarea'); iDesc.className = 'coach-input coach-input-md'; iDesc.value = current.body || '';
+
+    var lPh = document.createElement('span'); lPh.className = 'coach-label';
+    lPh.innerHTML = 'Placeholder text <span>(shown when not live)</span>';
+    var iPh = document.createElement('textarea'); iPh.className = 'coach-input coach-input-sm'; iPh.value = current.placeholder || '';
+
+    var toggleRow = document.createElement('div'); toggleRow.className = 'coach-toggle-row';
+    toggleRow.innerHTML = '<label class="coach-toggle"><input type="checkbox"' + (current.available ? ' checked' : '') + '><span class="coach-slider"></span></label><span class="coach-toggle-label">Product is live — show link instead of placeholder</span>';
+    var toggleInput = toggleRow.querySelector('input');
+
+    (function(k, tTag, tTitle, tDesc, tPh, tToggle) {
+      function sync() {
+        if (!window._routingOverrides[k]) window._routingOverrides[k] = {};
+        window._routingOverrides[k].tag = tTag.value;
+        window._routingOverrides[k].title = tTitle.value;
+        window._routingOverrides[k].body = tDesc.value;
+        window._routingOverrides[k].placeholder = tPh.value;
+        window._routingOverrides[k].available = tToggle.checked;
+        setSave('Unsaved changes');
+      }
+      [tTag, tTitle, tDesc, tPh].forEach(function(el) { el.addEventListener('input', sync); });
+      tToggle.addEventListener('change', sync);
+    })(rk, iTag, iTitle2, iDesc, iPh, toggleInput);
+
+    [lTag, iTag, lTitle2, iTitle2, lDesc, iDesc, lPh, iPh, toggleRow].forEach(function(el) { body.appendChild(el); });
+    wrap.appendChild(header); wrap.appendChild(body);
+    container.appendChild(wrap);
+  });
+}
+
+// ── QUESTIONS VIEWER ─────────────────────────────────────
+var QUESTIONS = [
+  {id:"b1", domain:"Body", n:1, text:"I engage in deliberate physical training at least 3 times per week — not incidental movement, but intentional, progressive practice."},
+  {id:"b2", domain:"Body", n:2, text:"I consistently get 7–9 hours of sleep. (Circumstances vs habitual trade distinction applies.)"},
+  {id:"b3", domain:"Body", n:3, text:"My body's baseline state is one of energy and readiness — not chronic fatigue managed with caffeine and willpower."},
+  {id:"b4", domain:"Body", n:4, text:"When under stress, I use physical movement as a deliberate tool for regulation rather than defaulting to food, screens, or alcohol."},
+  {id:"b5", domain:"Body", n:5, text:"I eat primarily guided by how I want to feel and perform — not primarily by habit, convenience, or emotional state."},
+  {id:"b6", domain:"Body", n:6, text:"My physical capacity has improved or been maintained over the past 12 months."},
+  {id:"b7", domain:"Body", n:7, text:"When I finish genuine physical effort, I feel the satisfaction of having demanded something real of my body."},
+  {id:"m1", domain:"Mind", n:8, text:"I regularly engage with ideas that challenge or complicate what I currently believe — not just content that confirms my existing views."},
+  {id:"m2", domain:"Mind", n:9, text:"I can direct my attention deliberately for at least 60–90 minutes without being pulled by distraction."},
+  {id:"m3", domain:"Mind", n:10, text:"I am comfortable sitting with uncertainty without immediately reaching for a premature answer or distraction."},
+  {id:"m4", domain:"Mind", n:11, text:"My use of screens and information is intentional rather than reactive."},
+  {id:"m5", domain:"Mind", n:12, text:"I can genuinely change my mind when presented with good evidence — I don't primarily defend positions as identity."},
+  {id:"m6", domain:"Mind", n:13, text:"I regularly reflect on my thinking — not just what I think, but how I'm thinking."},
+  {id:"m7", domain:"Mind", n:14, text:"My thinking quality under pressure remains reasonably consistent with my thinking when calm."},
+  {id:"i1", domain:"Inner Life", n:15, text:"When something difficult happens, I can identify what I'm actually feeling beyond just 'stressed' or 'fine.'"},
+  {id:"i2", domain:"Inner Life", n:16, text:"I have at least one relationship where genuine honesty is possible without judgment."},
+  {id:"i3", domain:"Inner Life", n:17, text:"I am not running a persistent unresolved pattern in my relationships that I haven't been able to change despite genuinely trying."},
+  {id:"i4", domain:"Inner Life", n:18, text:"My sense of who I am doesn't depend primarily on external performance or approval — I remain basically stable when recognition is absent."},
+  {id:"i5", domain:"Inner Life", n:19, text:"I can sit in silence without significant discomfort."},
+  {id:"i6", domain:"Inner Life", n:20, text:"I process difficult experiences rather than suppressing them or being consumed by them."},
+  {id:"i7", domain:"Inner Life", n:21, text:"I have a clear sense of what matters to me and why — genuinely mine — and I live in alignment with it more often than not."},
+];
+
+var Q_COLORS = {'Body':'#2d4a1e', 'Mind':'#1e2d4a', 'Inner Life':'#4a1e3d'};
+
+function buildQuestionsViewer() {
+  var container = document.getElementById('questions-viewer');
+  container.innerHTML = '';
+  ['Body','Mind','Inner Life'].forEach(function(domain) {
+    var sh = document.createElement('div'); sh.className = 'coach-section-head';
+    sh.style.color = Q_COLORS[domain]; sh.style.borderColor = Q_COLORS[domain];
+    sh.textContent = domain + ' Questions';
+    container.appendChild(sh);
+    QUESTIONS.filter(function(q) { return q.domain === domain; }).forEach(function(q) {
+      var row = document.createElement('div'); row.className = 'coach-q-row';
+      row.innerHTML = '<div class="coach-q-num">' + q.n + '</div><div><div class="coach-q-text">' + esc(q.text) + '</div><div class="coach-q-meta">ID: ' + q.id + ' · Scale: 1 (Rarely true) → 5 (Consistently true)</div></div>';
+      container.appendChild(row);
+    });
+  });
+}
+
+// ── SCORE LOGIC EDITOR ───────────────────────────────────
+window._scoreThresholds = { strength: 0.80, developing: 0.60 };
+
+var _origClassify = window.classifyDomain;
+window.classifyDomain = function(score) {
+  var pct = score / 35;
+  if (pct >= window._scoreThresholds.strength) return 'strength';
+  if (pct >= window._scoreThresholds.developing) return 'developing';
+  return 'deficit';
+};
+
+function buildScoresEditor() {
+  var container = document.getElementById('scores-editor');
+  container.innerHTML = '';
+
+  var threshBox = document.createElement('div');
+  threshBox.style.cssText = 'background:#fff;border:1px solid rgba(0,0,0,0.08);padding:24px 28px;margin-bottom:24px;';
+  threshBox.innerHTML = '<div style="font-size:14px;font-weight:700;color:#1a1a14;margin-bottom:12px;">Score Band Thresholds</div><p style="font-size:12.5px;color:#7a7a68;margin-bottom:20px;line-height:1.65;">Each domain is scored out of 35. These percentages determine which band a score falls into. Be conservative — shifting the strength threshold from 80% to 70% means someone scoring 24/35 gets labelled a strength.</p>';
+
+  var grid = document.createElement('div');
+  grid.innerHTML = '<div class="coach-score-grid"><div>Band</div><div>Threshold</div><div>Score ÷35</div><div>Meaning</div></div>';
+
+  function makeScoreRow(label, color, threshKey, note) {
+    var row = document.createElement('div'); row.className = 'coach-score-grid';
+    var lbl = document.createElement('div'); lbl.className = 'coach-score-label'; lbl.style.color = color; lbl.textContent = '● ' + label;
+    var inp = document.createElement('input'); inp.className = 'coach-score-input'; inp.type = 'number'; inp.min = 40; inp.max = 95; inp.step = 5;
+    inp.value = Math.round(window._scoreThresholds[threshKey] * 100);
+    var scoreDisplay = document.createElement('div'); scoreDisplay.className = 'coach-score-note';
+    var noteDiv = document.createElement('div'); noteDiv.className = 'coach-score-note'; noteDiv.textContent = note;
+
+    function updateDisplay() {
+      var s = Math.round(window._scoreThresholds.strength * 35);
+      var d = Math.round(window._scoreThresholds.developing * 35);
+      if (label === 'Strength') scoreDisplay.textContent = s + '+/35';
+      else if (label === 'Developing') scoreDisplay.textContent = d + '–' + (s-1) + '/35';
+      else scoreDisplay.textContent = '≤' + (d-1) + '/35';
+    }
+    updateDisplay();
+
+    if (threshKey) {
+      inp.addEventListener('input', function() {
+        window._scoreThresholds[threshKey] = parseInt(inp.value) / 100;
+        updateDisplay(); setSave('Unsaved changes');
+        // Update all rows
+        container.querySelectorAll('.coach-score-grid').forEach(function(r) {
+          var disp = r.querySelectorAll('.coach-score-note')[0];
+          // trigger re-render would need full rebuild - simple update is enough
+        });
+      });
+    }
+
+    if (!threshKey) {
+      inp.disabled = true; inp.value = '—'; inp.style.color = '#bbb';
+    }
+    [lbl, inp, scoreDisplay, noteDiv].forEach(function(el) { row.appendChild(el); });
+    return row;
+  }
+
+  grid.appendChild(makeScoreRow('Strength', '#2d4a1e', 'strength', 'Domain is genuinely developed'));
+  grid.appendChild(makeScoreRow('Developing', '#3b6b54', 'developing', 'Foundations present, gaps in consistency'));
+  grid.appendChild(makeScoreRow('Deficit', '#8b1a1a', null, 'Significant gaps, affecting other domains'));
+
+  threshBox.appendChild(grid);
+  container.appendChild(threshBox);
+
+  // Profile logic table
+  var logicBox = document.createElement('div');
+  logicBox.style.cssText = 'background:#fff;border:1px solid rgba(0,0,0,0.08);padding:24px 28px;';
+  logicBox.innerHTML = '<div style="font-size:14px;font-weight:700;color:#1a1a14;margin-bottom:12px;">Profile Assignment Logic</div><p style="font-size:12.5px;color:#7a7a68;margin-bottom:16px;line-height:1.65;">How the eight profiles are determined from domain combinations. Read-only reference.</p>';
+
+  var logicGrid = document.createElement('div'); logicGrid.className = 'coach-logic-grid';
+  var rows = [
+    ['Body','Mind / Inner Life','→ Profile'],
+    ['Strength','Strength + Strength','The Integrated'],
+    ['Deficit','Deficit + Deficit','The Hollow Achiever'],
+    ['Strength','Strength + Deficit (inner)','The Iron Wall'],
+    ['Deficit','Strength + Strength','The Scholar'],
+    ['Strength','Deficit + Strength (inner)','The Grounded One'],
+    ['Highest score','Body dominant','The Engine'],
+    ['Low','Mind dominant','The Strategist'],
+    ['Low','Inner life dominant','The Depth'],
+  ];
+  rows.forEach(function(row, i) {
+    row.forEach(function(cell, j) {
+      var el = document.createElement('div');
+      el.className = 'coach-logic-cell' + (i === 0 ? ' head' : '') + (j === 2 && i > 0 ? ' result' : '');
+      el.textContent = cell;
+      logicGrid.appendChild(el);
+    });
+  });
+  logicBox.appendChild(logicGrid);
+  container.appendChild(logicBox);
+}
+
+// ── EXPORT ───────────────────────────────────────────────
+function exportHTML() {
+  setSave('Generating...');
+  // Snapshot current PROFILES into the page HTML
+  var pageHTML = document.documentElement.outerHTML;
+  // Replace the PROFILES const with current in-memory values
+  var profilesJSON = JSON.stringify(PROFILES, null, 2);
+  pageHTML = pageHTML.replace(
+    /var PROFILES = \{[\s\S]*?\};\s*\n\n\/\/ Badge lookup/,
+    'var PROFILES = ' + profilesJSON + ';\n\n// Badge lookup'
+  );
+  var blob = new Blob([pageHTML], {type: 'text/html'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'three-strengths-updated.html';
+  a.click();
+  setSave('Exported ✓', 'green');
+}
+
+})(); // end IIFE
+
+</script>
+</body>
+</html>
